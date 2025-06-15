@@ -2,7 +2,7 @@ import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
-import patientAvatar from "../../assets/images/patient-avatar.png";
+import clientAvatar from "../../assets/images/client-avatar.png";
 import { HiStar } from "react-icons/hi";
 const Testimonial = () => {
   return (
@@ -30,7 +30,7 @@ const Testimonial = () => {
         <SwiperSlide>
           <div className="py-[30px] px-5 rounded-[13px]">
             <div className="flex items-center gap-[13px]">
-              <img src={patientAvatar} alt="" />
+              <img src={clientAvatar} alt="" />
               <div>
                 <h4 className="text-[18px] leading-[30px] font-semibold text-headingColor">
                   Rahim
@@ -53,7 +53,7 @@ const Testimonial = () => {
         <SwiperSlide>
           <div className="py-[30px] px-5 rounded-[13px]">
             <div className="flex items-center gap-[13px]">
-              <img src={patientAvatar} alt="" />
+              <img src={clientAvatar} alt="" />
               <div>
                 <h4 className="text-[18px] leading-[30px] font-semibold text-headingColor">
                   Karim
@@ -76,56 +76,10 @@ const Testimonial = () => {
         <SwiperSlide>
           <div className="py-[30px] px-5 rounded-[13px]">
             <div className="flex items-center gap-[13px]">
-              <img src={patientAvatar} alt="" />
+              <img src={clientAvatar} alt="" />
               <div>
                 <h4 className="text-[18px] leading-[30px] font-semibold text-headingColor">
                   Ahmed
-                </h4>
-                <div className="flex items-center gap-[2px]">
-                  <HiStar className="text-yellowColor w-[18px] h-5" />
-                  <HiStar className="text-yellowColor w-[18px] h-5" />
-                  <HiStar className="text-yellowColor w-[18px] h-5" />
-                  <HiStar className="text-yellowColor w-[18px] h-5" />
-                  <HiStar className="text-yellowColor w-[18px] h-5" />
-                </div>
-              </div>
-            </div>
-            <p className="text-[16px] leading-7 mt-4 text-textColor font-[400]">
-              I have taken medical srvies from them. They treat so well and they
-              are provding the best medical servies
-            </p>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="py-[30px] px-5 rounded-[13px]">
-            <div className="flex items-center gap-[13px]">
-              <img src={patientAvatar} alt="" />
-              <div>
-                <h4 className="text-[18px] leading-[30px] font-semibold text-headingColor">
-                  Hasan
-                </h4>
-                <div className="flex items-center gap-[2px]">
-                  <HiStar className="text-yellowColor w-[18px] h-5" />
-                  <HiStar className="text-yellowColor w-[18px] h-5" />
-                  <HiStar className="text-yellowColor w-[18px] h-5" />
-                  <HiStar className="text-yellowColor w-[18px] h-5" />
-                  <HiStar className="text-yellowColor w-[18px] h-5" />
-                </div>
-              </div>
-            </div>
-            <p className="text-[16px] leading-7 mt-4 text-textColor font-[400]">
-              I have taken medical srvies from them. They treat so well and they
-              are provding the best medical servies
-            </p>
-          </div>
-        </SwiperSlide>
-        <SwiperSlide>
-          <div className="py-[30px] px-5 rounded-[13px]">
-            <div className="flex items-center gap-[13px]">
-              <img src={patientAvatar} alt="" />
-              <div>
-                <h4 className="text-[18px] leading-[30px] font-semibold text-headingColor">
-                  Latif
                 </h4>
                 <div className="flex items-center gap-[2px]">
                   <HiStar className="text-yellowColor w-[18px] h-5" />

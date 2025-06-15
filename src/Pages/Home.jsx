@@ -12,7 +12,7 @@ import featureImg from "../assets/images/feature-img.jpg";
 import videoIcon from "../assets/images/video-icon.png";
 import avatarIcon from "../assets/images/avatar-icon.png";
 //import faqImg from "../assets/images/faq-img.jpg";
-//import DoctorsList from "./Doctors/DoctorsList";
+//import LawyersList from "./Lawyers/LawyersList";
 //import FaqItem from "./Faq/FaqItem";
 //import Testimonial from "../Components/Testimonial/Testimonial";
 import useTitle from "../Hooks/useTitle";
@@ -245,17 +245,17 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Doctor Section 
+      {/* Lawyer Section 
       <section>
         <div className="container">
           <div className="xl:w-[470px] mx-auto">
-            <h2 className="heading text-center">Our Great Doctors</h2>
+            <h2 className="heading text-center">Our Great lawyers</h2>
             <p className="text_para text-center">
               World-class care for everyone. Our health System offers unmatched,
               expert health care.
             </p>
           </div>
-          <DoctorsList />
+          <LawyersList />
         </div>
       </section> */}
 

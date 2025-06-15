@@ -4,14 +4,14 @@ import { reviews } from "../../../data/reviews.js";
 import Reviews from "./Reviews.jsx";
 import FeedBackForm from "./FeedBackForm.jsx";
 
-const Feedback = ({ doctor }) => {
+const Feedback = ({ lawyer }) => {
   const [feedbackForm, setFeedbackForm] = useState(false);
 
   return (
     <div>
       <div className="mb-[50px]">
         <h4 className="text-[20px] leading-[30px] font-bold text-headingColor mb-[30px] ">
-          All review ({doctor.totalRating})
+          All review ({lawyer.totalRating})
         </h4>
 
         {reviews.map((items, index) => (

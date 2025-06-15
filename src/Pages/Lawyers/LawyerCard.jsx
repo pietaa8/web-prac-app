@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import starIcon from "../../assets/images/Star.png";
 import { BsArrowRight } from "react-icons/bs";
 // eslint-disable-next-line react/prop-types
-const LawyerCard = ({ doctor }) => {
+const LawyerCard = ({ lawyer }) => {
   const {
     id,
     name,
@@ -11,9 +11,9 @@ const LawyerCard = ({ doctor }) => {
     avgRating,
     totalRating,
     photo,
-    totalPatients,
+    totalClients,
     hospital,
-  } = doctor;
+  } = lawyer;
   return (
     <div className="p-3 lg:p-5">
       <div>
@@ -40,14 +40,14 @@ const LawyerCard = ({ doctor }) => {
       <div className="mt-[18px] lg:mt-5 flex item-center justify-between">
         <div>
           <h3 className="text-[16px] leading-7 lg:text-[18px] lg;leading-[30px] font-semibold text-headingColor">
-            +{totalPatients} patients
+            +{totalClients} clients
           </h3>
           <p className="text-[14px] leading-6 font-[400] text-textColor">
             At {hospital}
           </p>
         </div>
         <Link
-          to={`/doctors/${id}`}
+          to={`/layers/${id}`}
           className="w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] flex items-center justify-center group hover:bg-primaryColor hover:border-none "
         >
           <BsArrowRight className="group-hover:text-white w-6 h-5" />

@@ -9,8 +9,8 @@ const navLinks = [
     display: "Home",
   },
   {
-    path: "/doctors",
-    display: "Our Doctors",
+    path: "/lawyers",
+    display: "Our Lawyers",
   },
   {
     path: "/services",

@@ -6,29 +6,21 @@ import LawyerAbout from "./LawyerAbout.jsx";
 import Feedback from "./Feedback.jsx";
 import SidePanel from "./SidePanel.jsx";
 
-const DoctorsDetails = () => {
+const LawyerDetails = () => {
   const { id } = useParams();
-  const [doctor, setDoctor] = useState(null);
+  const [lawyer, setLawyer] = useState(null);
   const [tab, setTab] = useState("about");
 
   useEffect(() => {
-    const selectedLawyer = lawyers.find((doc) => doc.id === id);
-    setDoctor(selectedLawyer);
+    const selectedLawyer = lawyers.find((law) => law.id === id);
+    setLawyer(selectedLawyer);
   }, [id]);
 
-  if (!doctor) {
-    return <div>Loading...</div>; // Return a loading indicator if data is not yet available
+  if (!lawyer) {
+    return <div>Loading...</div>;
   }
 
-  const {
-    name,
-    specialty,
-    avgRating,
-    totalRating,
-    photo,
-
-    short,
-  } = doctor;
+  const { name, specialty, avgRating, totalRating, photo, short } = lawyer;
 
   return (
     <section>
@@ -64,6 +56,7 @@ const DoctorsDetails = () => {
               </div>
             </div>
 
+            {/* Tabs */}
             <div className="mt-[50px] border-b border-solid border-[#0066ff34]">
               <button
                 onClick={() => setTab("about")}
@@ -83,12 +76,15 @@ const DoctorsDetails = () => {
                 Feedback
               </button>
             </div>
-            <div className="mt-[50px]">
-              {tab === "about" && <LawyerAbout doctor={doctor} />}
 
-              {tab === "feedback" && <Feedback doctor={doctor} />}
+            {/* Tab content */}
+            <div className="mt-[50px]">
+              {tab === "about" && <LawyerAbout lawyer={lawyer} />}
+              {tab === "feedback" && <Feedback lawyer={lawyer} />}
             </div>
           </div>
+
+          {/* Right panel */}
           <SidePanel />
         </div>
       </div>
@@ -96,4 +92,4 @@ const DoctorsDetails = () => {
   );
 };
 
-export default DoctorsDetails;
+export default LawyerDetails;

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import signupImg from "../assets/images/signup.gif";
-import avatar from "../assets/images/patient-avatar.png";
+import avatar from "../assets/images/client-avatar.png";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -12,7 +12,7 @@ const Signup = () => {
     password: "",
     photo: null,
     gender: "",
-    role: "patient",
+    role: "client",
   });
 
   const handleInputChange = (e) => {
@@ -101,8 +101,8 @@ const Signup = () => {
                     onChange={handleInputChange}
                     className="text-textColor font-semibold text-[15px] leading-7 px-4 py-3 focus:outline-none"
                   >
-                    <option value="patient">Patient</option>
-                    <option value="doctor">Doctor</option>
+                    <option value="client">Client</option>
+                    <option value="lawyer">Lawyer</option>
                     <option value="admin">Admin</option>
                   </select>
                 </label>

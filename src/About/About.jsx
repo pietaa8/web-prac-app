@@ -36,7 +36,7 @@ const About = () => {
 
             <Link to="/">
               <button className="btn">
-                <Link to="/doctors">Learn More</Link>
+                <Link to="/lawyers">Learn More</Link>
               </button>
             </Link>
           </div>

@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const DoctorSchema = new mongoose.Schema({
+const LawyerSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   name: { type: String, required: true },
@@ -11,7 +11,7 @@ const DoctorSchema = new mongoose.Schema({
     type: String,
   },
 
-  // Fields for doctors only
+  // Fields for lawyers only
   specialization: { type: String },
   qualifications: {
     type: Array,
@@ -41,4 +41,4 @@ const DoctorSchema = new mongoose.Schema({
   appointments: [{ type: mongoose.Types.ObjectId, ref: "Appointment" }],
 });
 
-export default mongoose.model("Doctor", DoctorSchema);
+export default mongoose.model("Lawyer", LawyerSchema);
