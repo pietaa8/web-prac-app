@@ -1,13 +1,13 @@
 import { Routes, Route } from "react-router-dom";
 import Home from "../Pages/Home";
 import Contact from "../Pages/Contact";
-import Doctors from "../Pages/Doctors/Doctors";
+import Lawyers from "../Pages/Lawyers/Lawyers";
 import Login from "../Pages/Login";
 import Signup from "../Pages/Signup";
 import Services from "../Pages/Services";
-import DoctorsDetails from "../Pages/Doctors/DoctorsDetails";
-import AppointmentDetails from "../Pages/Doctors/AppointmentDetails";
-import SidePanel from "../Pages/Doctors/SidePanel";
+import LawyersDetails from "../Pages/Lawyers/LawyersDetails";
+import AppointmentDetails from "../Pages/Lawyers/AppointmentDetails";
+import SidePanel from "../Pages/Lawyers/SidePanel";
 
 const Routers = () => {
   return (
@@ -15,8 +15,8 @@ const Routers = () => {
       <Route path="/" element={<Home />} />
       <Route path="/home" element={<Home />} />
       <Route path="/contact" element={<Contact />} />
-      <Route path="/doctors" element={<Doctors />} />
-      <Route path="/doctors/:id" element={<DoctorsDetails />} />
+      <Route path="/lawyers" element={<Lawyers />} />
+      <Route path="/lawyers/:id" element={<LawyersDetails />} />
       <Route path="/login" element={<Login />} />
       <Route path="/signup" element={<Signup />} />
       <Route path="/contact" element={<Contact />} />

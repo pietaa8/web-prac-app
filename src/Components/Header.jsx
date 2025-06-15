@@ -1,4 +1,4 @@
-import logo from "../../src/assets/images/mediEase.png";
+import logo from "../../src/assets/images/logo.png";
 import userImg from "../assets/images/avatar-icon.png";
 import { Link, NavLink } from "react-router-dom";
 import { BiMenu } from "react-icons/bi";

@@ -1,24 +1,24 @@
 import { Link } from "react-router-dom";
-import heroImg01 from "../assets/images/hero-img01.png";
-import heroImg02 from "../assets/images/hero-img02.png";
-import heroImg03 from "../assets/images/hero-img03.png";
-import icon01 from "../assets/images/icon01.png";
+import heroImg01 from "../assets/images/hero-img04.jpg";
+import heroImg02 from "../assets/images/hero-img05.jpg";
+import heroImg03 from "../assets/images/hero-img06.jpg";
+import icon01 from "../assets/images/icon011.jpg";
 import icon02 from "../assets/images/icon02.png";
 import icon03 from "../assets/images/icon03.png";
 import { BsArrowRight } from "react-icons/bs";
 import About from "../About/About";
 import ServicesList from "../Services/ServicesList";
-import featureImg from "../assets/images/feature-img.png";
+import featureImg from "../assets/images/feature-img.jpg";
 import videoIcon from "../assets/images/video-icon.png";
 import avatarIcon from "../assets/images/avatar-icon.png";
-import faqImg from "../assets/images/faq-img.png";
-import DoctorsList from "./Doctors/DoctorsList";
-import FaqItem from "./Faq/FaqItem";
-import Testimonial from "../Components/Testimonial/Testimonial";
+//import faqImg from "../assets/images/faq-img.jpg";
+//import DoctorsList from "./Doctors/DoctorsList";
+//import FaqItem from "./Faq/FaqItem";
+//import Testimonial from "../Components/Testimonial/Testimonial";
 import useTitle from "../Hooks/useTitle";
 
 const Home = () => {
-  useTitle("Home-MediEase");
+  useTitle("Legal App");
   return (
     <>
       <section className="hero__section pt-[60px] 2xl:h-[800px]">
@@ -27,21 +27,23 @@ const Home = () => {
             <div>
               <div className="lg:w-[570px]">
                 <h1 className="text-[36px] leading-[46px] text-headingColor font-[800] md:text-[60px] md:leading-[70px]">
-                  We help patients live a healthy, longer life
+                  We help clients access expert legal guidance with ease
                 </h1>
                 <p className="text_para">
-                  <strong> MediEase </strong>is a user-friendly healthcare app
-                  designed to simplify your medical journey. From finding
-                  top-rated doctors to booking appointments seamlessly.
-                  <strong> MediEase </strong>
-                  ensures hassle-free access to quality healthcare with features
-                  like patient reviews, personalized recommendations, and
-                  hospital details. We connect you to the care you need. Your
-                  health, made easier and more accessible because
+                  <strong> LegalVault </strong> is a user-friendly legal
+                  consultant booking app designed to simplify your legal
+                  journey. From finding top-rated lawyers to booking
+                  consultations seamlessly,
+                  <strong> LegalVault </strong>
+                  ensures hassle-free access to trusted legal support with
+                  features like client reviews, personalized recommendations,
+                  and firm details. We connect you to the legal help you need.
+                  Your justice, made simpler and more accessible because
                   <strong> we care</strong>.
                 </p>
+
                 <button className="btn">
-                  <Link to="/doctors">Request an Appointment</Link>
+                  <Link to="/lawyers">Request an Appointment</Link>
                 </button>
               </div>
               <div className="mt-[30px] lg:mt-[70px] flex flex-col lg:flex-row lg:items-center gap-5 lg:gap-[30px]">
@@ -50,21 +52,21 @@ const Home = () => {
                     30+
                   </h2>
                   <span className="w-[100px] h-2 bg-yellowColor rounded-full block mt-[-14px]"></span>
-                  <p className="text_para">Year of Experience</p>
+                  <p className="text_para">Years of Legal Expertise</p>
                 </div>
                 <div>
                   <h2 className="text-[36px] leading-[56px] lg:text-[44px] lg:leading-[54px] font-[700] text-headingColor">
                     15+
                   </h2>
                   <span className="w-[100px] h-2 bg-purpleColor rounded-full block mt-[-14px]"></span>
-                  <p className="text_para">Clinic Location</p>
+                  <p className="text_para">Practice Locations</p>
                 </div>
                 <div>
                   <h2 className="text-[36px] leading-[56px] lg:text-[44px] lg:leading-[54px] font-[700] text-headingColor">
                     100%
                   </h2>
                   <span className="w-[100px] h-2 bg-yellowColor rounded-full block mt-[-14px]"></span>
-                  <p className="text_para">Patient Satisfaction</p>
+                  <p className="text_para">Client Satisfaction</p>
                 </div>
               </div>
             </div>
@@ -87,13 +89,14 @@ const Home = () => {
         <div className="container">
           <div className="lg:[4709x] mx-auto">
             <h2 className="heading text-center">
-              Providing the best medical Services
+              Providing the Best Legal Services
             </h2>
             <p className="text_para text-center">
-              world-class care for everyone. Our healthy Sysytem offers
-              unmatched, expert health care.
+              Professional legal guidance for everyone. Our platform connects
+              you with trusted, experienced legal consultants.
             </p>
           </div>
+
           {/* <div className="flex flex-wrap items-center flex-col md:flex-row gap-5 lg:gap-[30px] mt-[30px] lg:mt-[55px]"></div> */}
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-[30px] mt-[30px] lg:mt-[55px]">
@@ -103,54 +106,58 @@ const Home = () => {
               </div>
               <div className="mt-[30px]">
                 <h2 className="text-[26px] leading-9 text-headingColor font-[700] text-center">
-                  Find a Doctor
+                  Find a Lawyer
                 </h2>
                 <p className="text-[16px] leading-7 text-textColor font-[400] mt-4 text-center">
-                  World-class care for everyone.Our health system offers
-                  unmatched, expert health care. from the lab to the clinic.
+                  Access verified legal professionals across various fields. Our
+                  network includes experts in family law, business law, and
+                  more.
                 </p>
                 <Link
-                  to="/doctors"
+                  to="/lawyers"
                   className="w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor hover:border-none "
                 >
                   <BsArrowRight className="group-hover:text-white w-6 h-5" />
                 </Link>
               </div>
             </div>
+
             <div className="py-[30px] px-5">
               <div className="flex items-center justify-center">
                 <img src={icon02} alt="" />
               </div>
               <div className="mt-[30px]">
                 <h2 className="text-[26px] leading-9 text-headingColor font-[700] text-center">
-                  Find a location
+                  Browse by Location
                 </h2>
                 <p className="text-[16px] leading-7 text-textColor font-[400] mt-4 text-center">
-                  World-class care for everyone.Our health system offers
-                  unmatched, expert health care. from the lab to the clinic.
+                  Find legal consultants near you. Explore offices and firms in
+                  your city and get localized support for your legal needs.
                 </p>
                 <Link
-                  to="/doctors"
+                  to="/locations"
                   className="w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor hover:border-none "
                 >
                   <BsArrowRight className="group-hover:text-white w-6 h-5" />
                 </Link>
               </div>
             </div>
+
             <div className="py-[30px] px-5">
               <div className="flex items-center justify-center">
                 <img src={icon03} alt="" />
               </div>
               <div className="mt-[30px]">
                 <h2 className="text-[26px] leading-9 text-headingColor font-[700] text-center">
-                  Book Appointment
+                  Book Consultation
                 </h2>
                 <p className="text-[16px] leading-7 text-textColor font-[400] mt-4 text-center">
-                  World-class care for everyone.Our health system offers
-                  unmatched, expert health care. from the lab to the clinic.
+                  Schedule a session with your preferred legal expert. Flexible
+                  time slots and instant confirmation — get help when you need
+                  it.
                 </p>
                 <Link
-                  to="/doctors"
+                  to="/appointments"
                   className="w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] mt-[30px] mx-auto flex items-center justify-center group hover:bg-primaryColor hover:border-none "
                 >
                   <BsArrowRight className="group-hover:text-white w-6 h-5" />
@@ -169,10 +176,10 @@ const Home = () => {
       <section>
         <div className="container">
           <div className="xl:w-[470px] mx-auto">
-            <h2 className="heading text-center">Our Medical Services</h2>
+            <h2 className="heading text-center">Our Legal Services</h2>
             <p className="text_para text-center">
-              world-class care for everyone. Our healthy Sysytem offers
-              unmatched, expert health care.
+              Expert legal solutions for everyone. Our platform connects you to
+              trusted legal professionals across a wide range of practice areas.
             </p>
           </div>
           <ServicesList />
@@ -185,29 +192,28 @@ const Home = () => {
           <div className="flex items-center justify-between flex-col lg:flex-row">
             <div className="xl:w-[680px]">
               <h2 className="heading">
-                Get Virtual Treatment <br /> anytime
+                Get Legal Advice <br /> Anytime, Anywhere
               </h2>
               <ul className="pl-4">
                 <li className="text_para">
-                  1. Schedule the appointment directly.
+                  1. Book a legal consultation directly with ease.
                 </li>
                 <li className="text_para">
-                  2. Search for your physican here, and contact their office.
+                  2. Browse verified legal experts and connect instantly.
                 </li>
                 <li className="text_para">
-                  3. Veiw our physicians who are accepting new patients, use the
-                  online scheduling tool to select an appointment time.
+                  3. See availability in real-time and reserve a time slot that
+                  fits your schedule.
                 </li>
               </ul>
               <Link to="/">
                 <button className="btn">
-                  <Link to="/doctors">Learn More</Link>
+                  <Link to="/lawyers">Learn More</Link>
                 </button>
               </Link>
             </div>
 
             {/* feature img */}
-
             <div className="relative z-10 xl:w-[770px] flex justify-end mt-[50px] lg:mt-0">
               <img src={featureImg} className="w-3/4" alt="" />
               <div className="w-[150px] lg:w-[248px] bg-white absolute bottom-[50px] left-0 md:bottom-[100px] md:left z-20 p-2 pb-3 lg:pt-4 lg:px-4 lg:pb-[26px] rounded-[10px]">
@@ -225,12 +231,12 @@ const Home = () => {
                   </div>
                 </div>
                 <div className="text-irisBlueColor w-[65px] lg:w-[96px] bg-[#CCF0F3] py-1 px-2 lg:py-[6px] lg:px-[10px] text-[8px] lg:text-[12px] font-[500] mt-2 lg:mt-4 rounded-full leading-[8px] lg:leading-4 ">
-                  Consultation
+                  Legal Consultation
                 </div>
-                <div className="flex items-center  gap-[6px] lg:gap-[10px] mt-2 lg:mt-[18px]">
+                <div className="flex items-center gap-[6px] lg:gap-[10px] mt-2 lg:mt-[18px]">
                   <img src={avatarIcon} alt="" />
                   <h4 className="text-[10px] lg:text-[16px] font-[700] text-headingColor leading-3 lg:leading-[26px]">
-                    Wayne Collins
+                    Md. Khalil
                   </h4>
                 </div>
               </div>
@@ -239,7 +245,7 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Doctor Section */}
+      {/* Doctor Section 
       <section>
         <div className="container">
           <div className="xl:w-[470px] mx-auto">
@@ -251,9 +257,9 @@ const Home = () => {
           </div>
           <DoctorsList />
         </div>
-      </section>
+      </section> */}
 
-      {/* FAQ SECTION */}
+      {/* FAQ SECTION 
 
       <section>
         <div className="container">
@@ -279,7 +285,7 @@ const Home = () => {
           </div>
           <Testimonial />
         </div>
-      </section>
+      </section> */}
     </>
   );
 };
