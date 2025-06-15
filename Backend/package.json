@@ -1,5 +1,5 @@
 {
-  "name": "medicare-booking",
+  "name": "lawvault-booking",
   "version": "1.0.0",
   "description": "",
   "type": "module",
@@ -9,7 +9,7 @@
     "start": "node index.js",
     "start-dev": "nodemon index.js"
   },
-  "author": "Team MediEase",
+  "author": "Team LawVault",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
