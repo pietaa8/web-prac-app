@@ -11,10 +11,10 @@ import ServicesList from "../Services/ServicesList";
 import featureImg from "../assets/images/feature-img.jpg";
 import videoIcon from "../assets/images/video-icon.png";
 import avatarIcon from "../assets/images/avatar-icon.png";
-//import faqImg from "../assets/images/faq-img.jpg";
-//import LawyersList from "./Lawyers/LawyersList";
-//import FaqItem from "./Faq/FaqItem";
-//import Testimonial from "../Components/Testimonial/Testimonial";
+import faqImg from "../assets/images/faq-img.jpg";
+import LawyersList from "./Lawyers/LawyersList";
+import FaqItem from "./Faq/FaqItem";
+import Testimonial from "../Components/Testimonial/Testimonial";
 import useTitle from "../Hooks/useTitle";
 
 const Home = () => {
@@ -165,6 +165,126 @@ const Home = () => {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <About />
+
+      {/* Services */}
+
+      <section>
+        <div className="container">
+          <div className="xl:w-[470px] mx-auto">
+            <h2 className="heading text-center">Our Legal Services</h2>
+            <p className="text_para text-center">
+              Trusted legal support for everyone. Our law firm offers unmatched,
+              expert legal assistance.
+            </p>
+          </div>
+          <ServicesList />
+        </div>
+      </section>
+
+      {/* Feature Content */}
+      <section>
+        <div className="container">
+          <div className="flex items-center justify-between flex-col lg:flex-row">
+            <div className="xl:w-[680px]">
+              <h2 className="heading">
+                Get Legal Advice <br /> Anytime, Anywhere
+              </h2>
+              <ul className="pl-4">
+                <li className="text_para">
+                  1. Schedule a legal consultation easily.
+                </li>
+                <li className="text_para">
+                  2. Search for a lawyer and connect directly.
+                </li>
+                <li className="text_para">
+                  3. View lawyers accepting new clients and choose your
+                  preferred time.
+                </li>
+              </ul>
+              <Link to="/">
+                <button className="btn">
+                  <Link to="/lawyers">Learn More</Link>
+                </button>
+              </Link>
+            </div>
+
+            {/* feature img */}
+            <div className="relative z-10 xl:w-[770px] flex justify-end mt-[50px] lg:mt-0">
+              <img src={featureImg} className="w-3/4" alt="" />
+              <div className="w-[150px] lg:w-[248px] bg-white absolute bottom-[50px] left-0 md:bottom-[100px] md:left z-20 p-2 pb-3 lg:pt-4 lg:px-4 lg:pb-[26px] rounded-[10px]">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-[6px] lg:gap-3">
+                    <p className="text-[10px] leading-[10px] lg:text-[14px] lg:leading-5 text-headingColor font-[600]">
+                      Tue, 24
+                    </p>
+                    <p className="text-[10px] leading-[10px] lg:text-[14px] lg:leading-5 text-textColor font-[400]">
+                      10:00AM
+                    </p>
+                    <span className="w-5 h-5 bg-yellowColor rounded py-1 px-[6px] lg:py-3 lg:px-[9px] lg:w-[34px] lg:h-[34px] flex items-center justify-center ">
+                      <img src={videoIcon} alt="" />
+                    </span>
+                  </div>
+                </div>
+                <div className="text-irisBlueColor w-[65px] lg:w-[96px] bg-[#CCF0F3] py-1 px-2 lg:py-[6px] lg:px-[10px] text-[8px] lg:text-[12px] font-[500] mt-2 lg:mt-4 rounded-full leading-[8px] lg:leading-4 ">
+                  Consultation
+                </div>
+                <div className="flex items-center gap-[6px] lg:gap-[10px] mt-2 lg:mt-[18px]">
+                  <img src={avatarIcon} alt="" />
+                  <h4 className="text-[10px] lg:text-[16px] font-[700] text-headingColor leading-3 lg:leading-[26px]">
+                    Wayne Collins
+                  </h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Lawyer Section */}
+      <section>
+        <div className="container">
+          <div className="xl:w-[470px] mx-auto">
+            <h2 className="heading text-center">Our Expert Lawyers</h2>
+            <p className="text_para text-center">
+              Reliable legal care for everyone. Our legal team offers unmatched,
+              expert representation and advice.
+            </p>
+          </div>
+          <DoctorsList /> {/* Change name to LawyersList if renamed */}
+        </div>
+      </section>
+
+      {/* FAQ SECTION */}
+      <section>
+        <div className="container">
+          <div className="flex justify-between gap-[50px] lg:gap-0">
+            <div className="w-1/2 hidden md:block">
+              <img src={faqImg} alt="" />
+            </div>
+            <div className="w-full md:w-1/2">
+              <h2 className="heading">Frequently Asked Questions</h2>
+              <FaqItem />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials */}
+      <section>
+        <div className="container">
+          <div className="xl:w-[470px] mx-auto">
+            <h2 className="heading text-center">What Our Clients Say</h2>
+            <p className="text_para text-center">
+              Professional legal help for everyone. Our legal experts deliver
+              trusted and timely consultation for every need.
+            </p>
+          </div>
+          <Testimonial />
         </div>
       </section>
     </>
