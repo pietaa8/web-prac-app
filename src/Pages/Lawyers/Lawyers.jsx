@@ -1,5 +1,5 @@
 import Testimonial from "../../Components/Testimonial/Testimonial.jsx";
-import { lawyers } from "../../../data/lawyers.js";
+import { lawyers } from ".././../../data/lawyers.js";
 import LawyerCard from "./LawyerCard";
 
 const Lawyers = () => {
