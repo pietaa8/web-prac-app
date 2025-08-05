@@ -89,7 +89,7 @@ const Signup = () => {
                   className="w-full py-4 border-b border-solid border-[#006ff61] focus:outline-none focus:border-b-primaryColor text-[22px] leading-7 text-headingColor placeholder:text-textColor rounded-md cursor-pointer"
                 />
               </div>
-              Tasnia Chowdhury, [6/16/2025 8:32 PM]
+
               <div className="mb-5 flex items-center justify-between">
                 <label className="text-headingColor font-bold text-[16px] leading-7">
                   Are you a:
