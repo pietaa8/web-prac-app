@@ -32,7 +32,7 @@ const Lawyers = () => {
             <h2 className="heading text-center">What Our Clients Say</h2>
             <p className="text_para text-center">
               Trusted legal support for everyone. Our consultants provide expert
-              guidance with dedication and integrity.
+              guidance with all the dedication and integrity.
             </p>
           </div>
           <Testimonial />
