@@ -1,14 +1,14 @@
 import lawyerImg01 from "../src/assets/images/lawyer-img01.jpg";
-import lawyerImg02 from "../src/assets/images/lawyer-img01.jpg";
-import lawyerImg03 from "../src/assets/images/lawyer-img01.jpg";
-import lawyerImg04 from "../src/assets/images/lawyer-img01.jpg";
-import lawyerImg05 from "../src/assets/images/lawyer-img01.jpg";
-import lawyerImg06 from "../src/assets/images/lawyer-img01.jpg";
+import lawyerImg02 from "../src/assets/images/lawyer-img02.jpg";
+import lawyerImg03 from "../src/assets/images/lawyer-img03.jpg";
+import lawyerImg04 from "../src/assets/images/lawyer-img04.jpg";
+import lawyerImg05 from "../src/assets/images/lawyer-img05.jpg";
+import lawyerImg06 from "../src/assets/images/lawyer-img06.jpg";
 
 export const lawyers = [
   {
     id: "01",
-    name: "Ayesha Rahman",
+    name: "Barrister Omar Hossain",
     specialty: "Family Law",
     avgRating: 4.9,
     totalRating: 315,
@@ -22,7 +22,7 @@ export const lawyers = [
   },
   {
     id: "02",
-    name: "Barrister Omar Hossain",
+    name: "Tanvir Alam",
     specialty: "Corporate Law",
     avgRating: 4.8,
     totalRating: 289,
@@ -50,7 +50,7 @@ export const lawyers = [
   },
   {
     id: "04",
-    name: "Tanvir Alam",
+    name: "Rakib Mahmud",
     specialty: "Criminal Defense",
     avgRating: 4.9,
     totalRating: 400,
@@ -78,7 +78,7 @@ export const lawyers = [
   },
   {
     id: "06",
-    name: "Rakib Mahmud",
+    name: "Ayesha Rahman",
     specialty: "Real Estate & Property Law",
     avgRating: 4.7,
     totalRating: 260,
