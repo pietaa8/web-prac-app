@@ -40,7 +40,7 @@ const Signup = () => {
         formDataToSend.append("photo", selectedFile); // multer expects 'photo'
       }
 
-      // তোমার backend URL এখানে দাও, render এর URL দিয়ে replace করো
+      //  backend URL will be given here, render's URL will replace'em
       const res = await axios.post(
         "https://lawvault-backend-1.onrender.com/signup",
         formDataToSend,

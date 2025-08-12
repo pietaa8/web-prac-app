@@ -20,8 +20,8 @@ const Login = () => {
         "https://lawvault-backend-1.onrender.com/login",
         formData
       );
-      alert(res.data.message); // Success message দেখাবে
-      navigate("/"); // সফল হলে homepage এ যাবে
+      alert(res.data.message); // shows Success message
+      navigate("/");
     } catch (err) {
       alert(err.response?.data?.message || "Login failed");
     }
