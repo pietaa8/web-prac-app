@@ -18,7 +18,7 @@ export const lawyers = [
     education: "LL.M in Family Law",
     chamber: "Harmony Legal Associates",
     short:
-      "Ayesha Rahman is a compassionate family law expert, specializing in divorce, custody, and marital disputes with a people-first approach.",
+      "Omar Hossain provides strategic legal counsel for businesses, covering compliance, contracts, mergers, and legal risk management.",
   },
   {
     id: "02",
@@ -32,7 +32,7 @@ export const lawyers = [
     education: "Barrister-at-Law, London",
     chamber: "LexBridge Chambers",
     short:
-      "Omar Hossain provides strategic legal counsel for businesses, covering compliance, contracts, mergers, and legal risk management.",
+      "Tanvir Alam is known for his sharp litigation skills and unwavering defense strategies in complex criminal cases.",
   },
   {
     id: "03",
@@ -60,7 +60,7 @@ export const lawyers = [
     education: "LL.B, DU",
     chamber: "Justice & Partners",
     short:
-      "Tanvir Alam is known for his sharp litigation skills and unwavering defense strategies in complex criminal cases.",
+      "Rakib Mahmud offers expert legal solutions for property transactions, land disputes, and real estate contract enforcement.",
   },
   {
     id: "05",
@@ -88,6 +88,6 @@ export const lawyers = [
     education: "LL.B, NSU",
     chamber: "Civic Legal Group",
     short:
-      "Rakib Mahmud offers expert legal solutions for property transactions, land disputes, and real estate contract enforcement.",
+      "Ayesha Rahman is a compassionate family law expert, specializing in divorce, custody, and marital disputes with a people-first approach.",
   },
 ];

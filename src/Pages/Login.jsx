@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom"; // Import useNavigate
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
-  const navigate = useNavigate(); // Initialize navigate function
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -12,10 +13,18 @@ const Login = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const submitHandler = (event) => {
+  const submitHandler = async (event) => {
     event.preventDefault();
-    // Perform login logic here...
-    navigate("/"); // Redirect to homepage
+    try {
+      const res = await axios.post(
+        "https://lawvault-backend-1.onrender.com/login",
+        formData
+      );
+      alert(res.data.message); // Success message দেখাবে
+      navigate("/"); // সফল হলে homepage এ যাবে
+    } catch (err) {
+      alert(err.response?.data?.message || "Login failed");
+    }
   };
 
   return (
@@ -61,7 +70,7 @@ const Login = () => {
             </form>
 
             <p className="mt-5 text-textColor text-center">
-              Do not have an account?
+              Do not have an account?{" "}
               <Link to="/signup" className="text-primaryColor font-medium">
                 Sign Up
               </Link>
