@@ -1,63 +1,96 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-const SidePanel = () => {
-  const [selectedSlot, setSelectedSlot] = useState(1); // Default slot
-  const navigate = useNavigate();
+const AppointmentForm = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    date: "",
+    time: "",
+  });
 
-  const handleBookAppointment = () => {
-    navigate("/appointment-details", { state: { timeSlot: selectedSlot } });
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const timeSlots = [
-    { id: 1, label: "Monday, 4 PM - 6 PM" }, // Pending → Accepted
-    { id: 2, label: "Thursday, 5 PM - 7 PM" }, // Only Pending
-    { id: 3, label: "Saturday, 9 AM - 11 AM" }, // Pending → Cancelled
-    { id: 4, label: "Tuesday, 5 PM - 7 PM" }, // Only Pending
-  ];
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const res = await axios.post(
+        "https://lawvault-backend-1.onrender.com/appointments",
+        formData
+      );
+      alert(res.data.message);
+      setFormData({ name: "", email: "", phone: "", date: "", time: "" }); // Clear form
+    } catch (error) {
+      alert(error.response?.data?.message || "Failed to book appointment");
+    }
+  };
 
   return (
-    <div className="shadow-panelShadow p-3 lg:p-5 rounded-md">
-      <div className="flex items-center justify-between">
-        <p className="text_para mt-0 font-semibold">Ticket Price</p>
-        <span className="textx-[16px] leading-7 lg:text-[32px] lg:leading-8 text-headingColor font-bold">
-          $20
-        </span>
-      </div>
+    <section className="max-w-md mx-auto p-5">
+      <h2 className="text-2xl font-bold mb-5">Book an Appointment</h2>
 
-      <div className="mt-[30px]">
-        <p className="text_para mt-0 font-semibold text-headingColor">
-          Available Time Slots:
-        </p>
-        <ul className="mt-3">
-          {timeSlots.map((slot) => (
-            <li
-              key={slot.id}
-              className="flex items-center justify-between mb-2"
-            >
-              <label className="text-[15px] leading-6 text-textColor font-semibold">
-                <input
-                  type="radio"
-                  name="timeSlot"
-                  value={slot.id}
-                  checked={selectedSlot === slot.id}
-                  onChange={() => setSelectedSlot(slot.id)}
-                />{" "}
-                {slot.label}
-              </label>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <input
+          type="text"
+          name="name"
+          placeholder="Your Full Name"
+          value={formData.name}
+          onChange={handleChange}
+          required
+          className="w-full border p-2 rounded"
+        />
 
-      <button
-        className="btn w-full px-2 rounded-md"
-        onClick={handleBookAppointment}
-      >
-        Book Appointment
-      </button>
-    </div>
+        <input
+          type="email"
+          name="email"
+          placeholder="Your Email"
+          value={formData.email}
+          onChange={handleChange}
+          required
+          className="w-full border p-2 rounded"
+        />
+
+        <input
+          type="tel"
+          name="phone"
+          placeholder="Phone Number"
+          value={formData.phone}
+          onChange={handleChange}
+          required
+          className="w-full border p-2 rounded"
+        />
+
+        <input
+          type="date"
+          name="date"
+          value={formData.date}
+          onChange={handleChange}
+          required
+          className="w-full border p-2 rounded"
+        />
+
+        <input
+          type="time"
+          name="time"
+          value={formData.time}
+          onChange={handleChange}
+          required
+          className="w-full border p-2 rounded"
+        />
+
+        <button
+          type="submit"
+          className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700"
+        >
+          Book Appointment
+        </button>
+      </form>
+    </section>
   );
 };
 
-export default SidePanel;
+export default AppointmentForm;
