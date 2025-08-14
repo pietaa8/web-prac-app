@@ -32,6 +32,6 @@ export const faqs = [
   {
     question: "What if I need to attend a court hearing?",
     content:
-      "Our consultants can advise you on how to prepare for court hearings. While we don't physically represent clients, we ensure you're legally informed and supported before, during, and after the process.",
+      "Our consultants can advise you on how to prepare for court hearings. While we don't physically represent clients, we ensure you're legally informed and supported before, during, and after the process as well.",
   },
 ];
