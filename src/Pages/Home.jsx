@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import heroImg01 from "../assets/images/hero-img04.jpg";
 import heroImg02 from "../assets/images/hero-img05.jpg";
 import heroImg03 from "../assets/images/hero-img06.jpg";
@@ -35,9 +35,9 @@ const Home = () => {
                   <strong> we care</strong>.
                 </p>
 
-                <button className="btn">
+                {/*   <button className="btn">
                   <Link to="/lawyers">Request an Appointment</Link>
-                </button>
+                </button> */}
               </div>
               <div className="mt-[30px] lg:mt-[70px] flex flex-col lg:flex-row lg:items-center gap-5 lg:gap-[30px]">
                 <div>
