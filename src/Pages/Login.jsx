@@ -16,14 +16,40 @@ const Login = () => {
   const submitHandler = async (event) => {
     event.preventDefault();
     try {
+      // Await the Axios response
+      // const res = await axios.post(
+      //   "http://localhost:5000/login", // Correct URL
+      //   //"https://lawvault-backend-1.onrender.com/login", // ✅ Render backend link
+      //   formData,
+      //   {
+      //     headers: { "Content-Type": "application/json" },
+      //   }
+      // );
+
       const res = await axios.post(
-        "https://lawvault-backend-1.onrender.com/login",
-        formData
+        "https://lawvault-backend-1.onrender.com/login", // ✅ Render backend link
+        formData,
+        {
+          headers: { "Content-Type": "application/json" },
+        }
       );
-      alert(res.data.message); // shows Success message
-      navigate("/");
+
+      // Check success
+      if (res.data.success) {
+        alert("✅ Login Successful");
+
+        // Save user in localStorage
+        if (res.data.user) {
+          localStorage.setItem("user", JSON.stringify(res.data.user));
+        }
+
+        navigate("/"); // Go to home
+      } else {
+        alert(res.data.message || "Login failed");
+      }
     } catch (err) {
-      alert(err.response?.data?.message || "Login failed");
+      console.error("Login error:", err);
+      alert(err.response?.data?.message || err.message || "Login failed");
     }
   };
 

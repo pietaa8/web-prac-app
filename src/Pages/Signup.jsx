@@ -30,6 +30,7 @@ const Signup = () => {
     event.preventDefault();
 
     try {
+      // Prepare form data to send with file
       const formDataToSend = new FormData();
       formDataToSend.append("name", formData.name);
       formDataToSend.append("email", formData.email);
@@ -37,12 +38,18 @@ const Signup = () => {
       formDataToSend.append("gender", formData.gender);
       formDataToSend.append("role", formData.role);
       if (selectedFile) {
-        formDataToSend.append("photo", selectedFile); // multer expects 'photo'
+        formDataToSend.append("photo", selectedFile); // multer expects 'photo' field
       }
 
-      //  backend URL will be given here, render's URL will replace'em
+      // const res = await axios.post("http://localhost:5000/signup", formData, {
+      //   headers: {
+      //     "Content-Type": "multipart/form-data", // axios handles this automatically but explicit is okay
+      //   },
+      // });
+
+      // change this line only:
       const res = await axios.post(
-        "https://lawvault-backend-1.onrender.com/signup",
+        "https://lawvault-backend-1.onrender.com/signup", // ✅ Render backend link
         formDataToSend,
         {
           headers: {
@@ -55,11 +62,11 @@ const Signup = () => {
         alert("Account created successfully!");
         navigate("/login");
       } else {
-        alert("Signup failed. Please try again.");
+        alert("Failed to create account.");
       }
     } catch (error) {
       console.error("Signup error:", error.response?.data || error.message);
-      alert(error.response?.data?.message || "Something went wrong.");
+      alert("Something went wrong during signup.");
     }
   };
 
@@ -67,6 +74,7 @@ const Signup = () => {
     <section className="px-5 xl:px-0">
       <div className="max-w-[1170px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2">
+          {/* Left side - Image */}
           <div className="hidden lg:block bg-primaryColor rounded-l-lg">
             <figure className="rounded-l-lg">
               <img
@@ -77,12 +85,14 @@ const Signup = () => {
             </figure>
           </div>
 
+          {/* Right side - Form */}
           <div className="rounded-l-lg lg:pl-16 py-10">
             <h3 className="text-headingColor text-[22px] leading-9 font-bold mb-10">
               Create an <span className="text-primaryColor">account</span>
             </h3>
 
             <form onSubmit={submitHandler}>
+              {/* Name */}
               <div className="mb-5">
                 <input
                   type="text"
@@ -95,6 +105,7 @@ const Signup = () => {
                 />
               </div>
 
+              {/* Email */}
               <div className="mb-5">
                 <input
                   type="email"
@@ -107,6 +118,7 @@ const Signup = () => {
                 />
               </div>
 
+              {/* Password */}
               <div className="mb-5">
                 <input
                   type="password"
@@ -119,6 +131,7 @@ const Signup = () => {
                 />
               </div>
 
+              {/* Role & Gender */}
               <div className="mb-5 flex items-center justify-between">
                 <label className="text-headingColor font-bold text-[16px] leading-7">
                   Are you a:
@@ -149,6 +162,7 @@ const Signup = () => {
                 </label>
               </div>
 
+              {/* File Upload */}
               <div className="mb-5 flex items-center gap-3">
                 <figure className="w-[60px] h-[60px] rounded-full border-2 border-solid border-primaryColor flex items-center justify-center overflow-hidden">
                   <img

@@ -18,10 +18,15 @@ const AppointmentForm = () => {
     event.preventDefault();
 
     try {
+      // const res = await axios.post(
+      //   "https://lawvault-backend-1.onrender.com/appointments",
+      //   formData
+      // );
       const res = await axios.post(
-        "https://lawvault-backend-1.onrender.com/appointments",
+        "https://lawvault-backend-1.onrender.com/appointments", // ✅ Render backend link
         formData
       );
+
       alert(res.data.message);
       setFormData({ name: "", email: "", phone: "", date: "", time: "" }); // Clear form
     } catch (error) {
