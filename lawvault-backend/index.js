@@ -194,7 +194,7 @@ app.post("/appointments", async (req, res) => {
       .collection("appointments")
       .insertOne(newAppointment);
 
-    return sendResponse(res, 201, true, "Appointment booked successfully", {
+    return sendResponse(res, 201, true, "Appointment has been booked successfully", {
       id: result.insertedId,
       ...newAppointment,
     });
