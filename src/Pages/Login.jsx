@@ -26,13 +26,14 @@ const Login = () => {
       //   }
       // );
 
-      const res = await axios.post(
+        const res = await axios.post(
         "https://lawvault-backend-1.onrender.com/login", // ✅ Render backend link
         formData,
         {
           headers: { "Content-Type": "application/json" },
         }
       );
+
 
       // Check success
       if (res.data.success) {
