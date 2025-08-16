@@ -23,9 +23,9 @@ const AppointmentForm = () => {
       //   formData
       // );
       const res = await axios.post(
-        "https://lawvault-backend-1.onrender.com/appointments", // ✅ Render backend link
-        formData
-      );
+      "https://lawvault-backend-1.onrender.com/appointments", // ✅ Render backend link
+      formData
+    );
 
       alert(res.data.message);
       setFormData({ name: "", email: "", phone: "", date: "", time: "" }); // Clear form
