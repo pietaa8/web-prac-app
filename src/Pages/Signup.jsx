@@ -58,7 +58,6 @@ const Signup = () => {
         }
       );
 
-
       if (res.status === 201) {
         alert("Account created successfully!");
         navigate("/login");
@@ -78,7 +77,11 @@ const Signup = () => {
           {/* Left side - Image */}
           <div className="hidden lg:block bg-primaryColor rounded-l-lg">
             <figure className="rounded-l-lg">
-              <img src={signupImg} alt="Signup" className="w-full rounded-l-lg" />
+              <img
+                src={signupImg}
+                alt="Signup"
+                className="w-full rounded-l-lg"
+              />
             </figure>
           </div>
 
@@ -140,7 +143,6 @@ const Signup = () => {
                   >
                     <option value="client">Client</option>
                     <option value="lawyer">Lawyer</option>
-                    <option value="admin">Admin</option>
                   </select>
                 </label>
                 <label className="text-headingColor font-bold text-[16px] leading-7">
@@ -163,7 +165,9 @@ const Signup = () => {
               <div className="mb-5 flex items-center gap-3">
                 <figure className="w-[60px] h-[60px] rounded-full border-2 border-solid border-primaryColor flex items-center justify-center overflow-hidden">
                   <img
-                    src={selectedFile ? URL.createObjectURL(selectedFile) : avatar}
+                    src={
+                      selectedFile ? URL.createObjectURL(selectedFile) : avatar
+                    }
                     alt="User Avatar"
                     className="w-full h-full rounded-full object-cover"
                   />
@@ -188,7 +192,10 @@ const Signup = () => {
               </div>
 
               <div className="mt-7">
-                <button type="submit" className="w-full bg-primaryColor text-white text-[18px] leading-[30px] rounded-lg py-3">
+                <button
+                  type="submit"
+                  className="w-full bg-primaryColor text-white text-[18px] leading-[30px] rounded-lg py-3"
+                >
                   Signup
                 </button>
               </div>
@@ -208,5 +215,3 @@ const Signup = () => {
 };
 
 export default Signup;
-
-
