@@ -8,6 +8,7 @@ const AppointmentForm = () => {
     phone: "",
     date: "",
     time: "",
+    lawyerName: "", // new field
   });
 
   const handleChange = (e) => {
@@ -18,17 +19,20 @@ const AppointmentForm = () => {
     event.preventDefault();
 
     try {
-      // const res = await axios.post(
-      //   "https://lawvault-backend-1.onrender.com/appointments",
-      //   formData
-      // );
       const res = await axios.post(
-      "https://lawvault-backend-1.onrender.com/appointments", // ✅ Render backend link
-      formData
-    );
+        "https://lawvault-backend-1.onrender.com/appointments",
+        formData
+      );
 
       alert(res.data.message);
-      setFormData({ name: "", email: "", phone: "", date: "", time: "" }); // Clear form
+      setFormData({
+        name: "",
+        email: "",
+        phone: "",
+        date: "",
+        time: "",
+        lawyerName: "",
+      });
     } catch (error) {
       alert(error.response?.data?.message || "Failed to book appointment");
     }
@@ -85,6 +89,17 @@ const AppointmentForm = () => {
           onChange={handleChange}
           required
           className="w-full border p-2 rounded"
+        />
+
+        {/* New lawyer name input */}
+        <input
+          type="text"
+          name="lawyerName"
+          placeholder="Lawyer Name(e.g.,Omar Hossain-Family Law)"
+          value={formData.lawyerName}
+          onChange={handleChange}
+          required
+          className="w-full border p-2 rounded w-[400px]"
         />
 
         <button
