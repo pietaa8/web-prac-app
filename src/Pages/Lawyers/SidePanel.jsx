@@ -99,7 +99,7 @@ const AppointmentForm = () => {
           value={formData.lawyerName}
           onChange={handleChange}
           required
-          className="w-full border p-2 rounded w-[400px]"
+          className="w-full border p-2 rounded w-[430px]"
         />
 
         <button
