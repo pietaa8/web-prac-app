@@ -32,7 +32,7 @@ const Home = () => {
                   features like client reviews, personalized recommendations,
                   and firm details. We connect you to the legal help you need.
                   Your justice, made simpler and more accessible because
-                  <strong> we care about you and your legal issues</strong>.
+                  <strong> we care</strong>.
                 </p>
 
                 {/*   <button className="btn">
