@@ -1,26 +1,46 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 const AppointmentDetails = () => {
   const location = useLocation();
-  const timeSlot = location.state?.timeSlot || 1; // Default slot 1 if none selected
+  const navigate = useNavigate();
+  const initialAppointment = location.state; // appointment info passed from AppointmentForm/Payment
+console.log("Initial appointment _id:", initialAppointment?._id);
+const [appointment, setAppointment] = useState(initialAppointment);
+useEffect(() => {
+    if (!initialAppointment?._id) {
+      navigate("/lawyers/sidepanel");
+      return;
+    }
+     const fetchAppointment = async () => {
+      try {
+        const { data } = await axios.get(`http://localhost:5000/api/appointments/${initialAppointment._id}`, {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        });
+        setAppointment(data);
+      } catch (err) {
+        console.error("Error fetching appointment:", err);
+      }
+    };
+    
+    // fetch immediately
+    fetchAppointment();
 
-  const [status, setStatus] = useState("pending");
+    // ✅ poll every 5 seconds
+    const interval = setInterval(fetchAppointment, 5000);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      if (timeSlot === 1) setStatus("accepted"); // Monday: Pending → Accepted
-      else if (timeSlot === 2) setStatus("pending"); // Thursday: Always Pending
-      else if (timeSlot === 3)
-        setStatus("cancelled"); // Saturday: Pending → Cancelled
-      else if (timeSlot === 4) setStatus("pending"); // Tuesday: Always Pending
-    }, 3000);
+    return () => clearInterval(interval);
+  }, [initialAppointment, navigate]);
 
-    return () => clearTimeout(timer);
-  }, [timeSlot]);
+  if (!appointment) {
+    // No appointment info: redirect back to appointment form
+    navigate("/lawyers/sidepanel");
+    return null;
+  }
 
   const renderStatusContent = () => {
-    switch (status) {
+    switch (appointment.status) {
       case "accepted":
         return (
           <div className="text-center">
@@ -28,9 +48,6 @@ const AppointmentDetails = () => {
             <h3 className="text-headingColor text-[28px] font-bold">
               Your Appointment is Confirmed!
             </h3>
-            <p className="text-textColor mt-2">
-              Congratulations! Your appointment has been successfully booked.
-            </p>
           </div>
         );
       case "pending":
@@ -41,24 +58,20 @@ const AppointmentDetails = () => {
               Your Appointment is Pending...
             </h3>
             <p className="text-textColor mt-2">
-              Please wait while we process your request.
+              Please wait while the lawyer reviews your request.
             </p>
           </div>
         );
       case "cancelled":
+      default:
         return (
           <div className="text-center">
             <div className="text-red-600 text-[40px] mb-4">✘</div>
             <h3 className="text-headingColor text-[28px] font-bold">
               Your Appointment was Cancelled
             </h3>
-            <p className="text-textColor mt-2">
-              Unfortunately, your appointment could not be confirmed.
-            </p>
           </div>
         );
-      default:
-        return null;
     }
   };
 
@@ -68,11 +81,25 @@ const AppointmentDetails = () => {
         Appointment Details
       </h2>
       {renderStatusContent()}
+
+      {/* Optional: show client details */}
+      <div className="mt-5 border p-4 rounded-lg bg-gray-50">
+        <p><strong>Name:</strong> {appointment.name}</p>
+        <p><strong>Email:</strong> {appointment.email}</p>
+        <p><strong>Phone:</strong> {appointment.phone}</p>
+        <p>
+          <strong>Lawyer:</strong>{" "}
+          {appointment.lawyer?.name || appointment.lawyerName || "N/A"}
+        </p>
+        <p><strong>Date:</strong> {appointment.date}</p>
+        <p><strong>Time:</strong> {appointment.time}</p>
+        <p><strong>Payment Status:</strong> {appointment.paymentStatus}</p>
+      </div>
     </div>
   );
 };
 
-// CSS for Pending Animation
+// Pending Animation CSS
 const styles = `
   .pending-animation {
     border: 4px solid #f3f3f3;
@@ -82,14 +109,12 @@ const styles = `
     height: 48px;
     animation: spin 1s linear infinite;
   }
-
   @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
   }
 `;
 
-// Inject styles into document head
 if (typeof window !== "undefined") {
   const styleSheet = document.createElement("style");
   styleSheet.textContent = styles;

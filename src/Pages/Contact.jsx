@@ -1,7 +1,7 @@
 import useTitle from "../Hooks/useTitle";
 
 const Contact = () => {
-  useTitle("Contact-LawVault");
+  useTitle("Contact");
   return (
     <section>
       <div className="px-4 mx-auto max-w-screen-md">

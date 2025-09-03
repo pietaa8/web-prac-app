@@ -34,10 +34,12 @@ const Home = () => {
                   Your justice, made simpler and more accessible because
                   <strong> we care</strong>.
                 </p>
-
-                {/*   <button className="btn">
-                  <Link to="/lawyers">Request an Appointment</Link>
-                </button> */}
+<button
+  onClick={() => navigate("/lawyers")}
+  className="btn"
+>
+  Request an Appointment
+</button>
               </div>
               <div className="mt-[30px] lg:mt-[70px] flex flex-col lg:flex-row lg:items-center gap-5 lg:gap-[30px]">
                 <div>

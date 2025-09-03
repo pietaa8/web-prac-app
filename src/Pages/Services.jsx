@@ -3,7 +3,7 @@ import useTitle from "../Hooks/useTitle.js";
 import ServicesCard from "../Services/ServicesCard.jsx";
 
 const Services = () => {
-  useTitle("Services-LawVault");
+  useTitle("Services");
 
   return (
     <>

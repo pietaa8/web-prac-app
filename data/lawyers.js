@@ -5,9 +5,49 @@ import lawyerImg04 from "../src/assets/images/lawyer-img04.jpg";
 import lawyerImg05 from "../src/assets/images/lawyer-img05.jpg";
 import lawyerImg06 from "../src/assets/images/lawyer-img06.jpg";
 
-export const lawyers = [
+  export const lawyers = [
   {
-    id: "01",
+    _id: "1",
+    name: "Barrister Omar Hossain",
+    photo: "/assets/lawyer-img01-f400c756.jpg", // local image or URL
+    specialization: "Family Law",
+    experience: 5,
+    averageRating: 4.9,
+    totalRating: 315,
+    totalClients: 450,
+  },
+  {
+    _id: "2",
+    name: "Sara Khan",
+    photo: "/default-lawyer.png",
+    specialization: "Corporate Law",
+    experience: 8,
+    averageRating: 4.5,
+    totalRating: 18,
+    totalClients: 40,
+  },
+  {
+    _id: "3",
+    name: "Ahmed Faris",
+    photo: "/default-lawyer.png",
+    specialization: "Family Law",
+    experience: 6,
+    averageRating: 4.7,
+    totalRating: 20,
+    totalClients: 35,
+  },
+  {
+    _id: "4",
+    name: "Ayesha Rahman",
+    photo: "/default-lawyer.png",
+    specialization: "Civil Litigation",
+    experience: 7,
+    averageRating: 4.9,
+    totalRating: 30,
+    totalClients: 60,
+  },
+];
+/*   id: "01",
     name: "Barrister Omar Hossain",
     specialty: "Family Law",
     avgRating: 4.9,
@@ -90,4 +130,4 @@ export const lawyers = [
     short:
       "Ayesha Rahman is a compassionate family law expert, specializing in divorce, custody, and marital disputes with a people-first approach.",
   },
-];
+];    */

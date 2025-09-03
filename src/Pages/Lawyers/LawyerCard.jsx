@@ -1,58 +1,39 @@
-/* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
-import starIcon from "../../assets/images/Star.png";
-import { BsArrowRight } from "react-icons/bs";
-// eslint-disable-next-line react/prop-types
-const LawyerCard = ({ lawyer }) => {
-  const {
-    id,
-    name,
-    specialty,
-    avgRating,
-    totalRating,
-    photo,
-    totalClients,
-    chamber,
-  } = lawyer;
-  return (
-    <div className="p-3 lg:p-5">
-      <div>
-        <img src={photo} alt="" className="rounded" />
-      </div>
-      <h2 className="text-[18px] lg:text-[26px] font-[700] leading-[30px] lg:leading-9 text-headingColor">
-        {name}
-      </h2>
 
-      <div className="mt-2 lg:mt-4 flex items-center justify-between">
-        <span className="bg-[#CCF0F3] text-irisBlueColor text-[12px] lg:text-[16px] py-1 px-2 font-semibold rounded">
-          {specialty}
-        </span>
-        <div className="flex items-center gap-[6px]">
-          <span className="flex items-center font-[700] text-headingColor gap-[6px] text-[14px] lg:text-[16px] leading-6 lg:leading-7 ">
-            <img src={starIcon} alt="" />
-            {avgRating}{" "}
-          </span>
-          <span className="text-[14px] leading-6 lg:text-[16px] lg:leading-7 font-[400] text-textColor">
-            ({totalRating})
-          </span>
-        </div>
+const LawyerCard = ({ lawyer }) => {
+  return (
+    <div className="p-3 lg:p-5 rounded-lg shadow-md hover:shadow-xl transition-shadow">
+      <img
+        src={
+          lawyer.photo
+            ? (lawyer.photo.startsWith("http") ? lawyer.photo : `http://localhost:5000/${lawyer.photo.replace(/\\/g, "/")}`)
+            : "/default-lawyer.png"
+        }
+        alt={lawyer.name}
+        className="w-full h-48 object-cover rounded-lg mb-3"
+      />
+
+      <h3 className="text-lg font-semibold">{lawyer.name}</h3>
+      <p className="text-sm text-gray-600 capitalize">
+        {lawyer.specialization || "General Practice"}
+      </p>
+      <p className="text-sm text-gray-500">
+        {lawyer.experience ? `${lawyer.experience} years experience` : "Experience not specified"}
+      </p>
+
+      <div className="flex items-center justify-between mt-2 text-sm text-gray-700">
+        <p>
+          ⭐ {lawyer.averageRating ? lawyer.averageRating.toFixed(1) : "N/A"} ({lawyer.totalRating || 0} reviews)
+        </p>
+        <p>{lawyer.totalClients || 0} clients</p>
       </div>
-      <div className="mt-[18px] lg:mt-5 flex item-center justify-between">
-        <div>
-          <h3 className="text-[16px] leading-7 lg:text-[18px] lg;leading-[30px] font-semibold text-headingColor">
-            +{totalClients} clients
-          </h3>
-          <p className="text-[14px] leading-6 font-[400] text-textColor">
-            At {lawyer.chamber}
-          </p>
-        </div>
-        <Link
-          to={`/lawyers/${id}`}
-          className="w-[44px] h-[44px] rounded-full border border-solid border-[#181A1E] flex items-center justify-center group hover:bg-primaryColor hover:border-none "
-        >
-          <BsArrowRight className="group-hover:text-white w-6 h-5" />
-        </Link>
-      </div>
+
+      <Link
+        to={`/lawyers/${lawyer._id}`}
+        className="mt-3 inline-block text-blue-600 hover:underline"
+      >
+        View Profile
+      </Link>
     </div>
   );
 };
