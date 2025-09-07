@@ -25,7 +25,7 @@ const LawyerCard = ({ lawyer }) => {
         <p>
           ⭐ {lawyer.averageRating ? lawyer.averageRating.toFixed(1) : "N/A"} ({lawyer.totalRating || 0} reviews)
         </p>
-        <p>{lawyer.totalClients || 0} clients</p>
+        <p>{lawyer.clientsCount || 0} clients</p>
       </div>
 
       <Link

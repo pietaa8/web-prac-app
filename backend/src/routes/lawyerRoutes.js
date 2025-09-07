@@ -63,6 +63,19 @@ router.get("/:id", async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+// ✅ Delete lawyer by ID
+router.delete("/:id", async (req, res) => {
+  try {
+    const lawyer = await User.findByIdAndDelete(req.params.id);
+    if (!lawyer) {
+      return res.status(404).json({ message: "Lawyer not found" });
+    }
+    res.json({ message: "Lawyer deleted successfully" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 
 
 export default router;

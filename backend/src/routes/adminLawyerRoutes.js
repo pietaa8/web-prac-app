@@ -1,3 +1,4 @@
+// backend/routes/adminLawyerRoutes.js
 import express from "express";
 import User from "../models/User.js"; // lawyers stored in User model
 import { authMiddleware, adminMiddleware } from "../middleware/auth.js";
@@ -25,12 +26,12 @@ router.get("/:id", authMiddleware, adminMiddleware, async (req, res) => {
   }
 });
 
-// ✅ Update lawyer
-router.put("/edit/:id", authMiddleware, adminMiddleware, async (req, res) => {
+// ✅ Update lawyer (no /edit anymore)
+router.put("/:id", authMiddleware, adminMiddleware, async (req, res) => {
   try {
     const updatedLawyer = await User.findByIdAndUpdate(
       req.params.id,
-      req.body, // send updated fields in body
+      req.body,
       { new: true }
     );
 
@@ -43,8 +44,8 @@ router.put("/edit/:id", authMiddleware, adminMiddleware, async (req, res) => {
   }
 });
 
-// ✅ Delete lawyer
-router.delete("/delete/:id", authMiddleware, adminMiddleware, async (req, res) => {
+// ✅ Delete lawyer (no /delete anymore)
+router.delete("/:id", authMiddleware, adminMiddleware, async (req, res) => {
   try {
     const deletedLawyer = await User.findByIdAndDelete(req.params.id);
     if (!deletedLawyer)
@@ -57,3 +58,4 @@ router.delete("/delete/:id", authMiddleware, adminMiddleware, async (req, res) =
 });
 
 export default router;
+

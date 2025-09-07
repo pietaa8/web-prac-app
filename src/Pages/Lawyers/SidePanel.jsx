@@ -76,11 +76,12 @@ const AppointmentForm = () => {
         "http://localhost:5000/api/appointments",
         {
           ...formData,
-          paymentStatus: "pending",
+         // set paymentStatus based on whether payment was done
+        paymentStatus: paymentDone ? "paid" : "pending",
         },
         { headers: { Authorization: `Bearer ${token}` } }
       );
-
+ // clear saved form + payment flags and go to details
       localStorage.removeItem("formData");
       localStorage.removeItem("paymentStatus");
       localStorage.removeItem("paymentMethod");
@@ -108,7 +109,8 @@ const AppointmentForm = () => {
       alert("Please select a lawyer first.");
       return;
     }
-    navigate(`/payment/${formData.lawyer}`, { state: formData });
+    // navigate to payment for the selected lawyer id (was formData.lawyer)
+    navigate(`/payment/${formData.lawyerId}`, { state: formData });
   };
 
   if (!isLoggedIn) return null;

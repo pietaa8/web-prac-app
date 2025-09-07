@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation, useParams } from "react-router-dom";
-import axios from "axios";
 import bkashLogo from "../assets/bkash.png";
 import paypalLogo from "../assets/paypal.png";
 
-export default function Payment({ setPaymentDone }) { // optional: pass down state
+export default function Payment({ setPaymentDone }) {
   const navigate = useNavigate();
   const { lawyerId } = useParams();
   const location = useLocation();
@@ -50,7 +49,7 @@ export default function Payment({ setPaymentDone }) { // optional: pass down sta
     localStorage.setItem("paymentStatus", "paid");
     localStorage.setItem("paymentMethod", methodUsed);
 
-    if (setPaymentDone) setPaymentDone(true); // if you pass this prop from AppointmentForm
+    if (setPaymentDone) setPaymentDone(true);
 
     navigate(`/lawyers/${lawyerId}`);
   };
@@ -70,31 +69,14 @@ export default function Payment({ setPaymentDone }) { // optional: pass down sta
     }
 
     try {
-      const token = localStorage.getItem("token");
-
-      await axios.post(
-        `http://localhost:5000/api/payments/${method.toLowerCase()}`,
-        {
-          amount,
-          clientName,
-          password,
-          currency: method.toLowerCase() === "bkash" ? "BDT" : "USD",
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
+      // no backend call needed — we simulate payment
       handlePaymentSuccess(method);
     } catch (err) {
-      setMessage(err.response?.data?.error || "Payment failed. Try again.");
+      setMessage("Payment failed. Try again.");
     }
   };
 
-  if (!tokenExists) return null; // prevents blank page
+  if (!tokenExists) return null;
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-100 via-white to-gray-200">

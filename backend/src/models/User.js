@@ -1,4 +1,12 @@
 import mongoose from "mongoose";
+const reviewSchema = new mongoose.Schema({
+  clientId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+  name: String,
+  photo: String,
+  rating: { type: Number, required: true },
+  review: { type: String, required: true },
+  date: { type: Date, default: Date.now }
+});
 
 const userSchema = new mongoose.Schema({
   name: { type: String, required: true },
@@ -12,7 +20,16 @@ const userSchema = new mongoose.Schema({
   photo: { type: String },
   clientsCount: { type: Number, default: 0 }, // <-- NEW
    createdAt: {type: Date, default: Date.now, },
-});
+
+
+   // NEW FIELDS
+    reviews: [reviewSchema],
+    averageRating: { type: Number, default: 0 },
+    totalRating: { type: Number, default: 0 }
+  },
+  { timestamps: true }
+);
+
 
 export default mongoose.model("User", userSchema);
 

@@ -1,3 +1,6 @@
+import axios from "axios";
+axios.defaults.baseURL = "http://localhost:5000";
+export default axios;
 import express from "express";
 import path from "path";
 import mongoose from "mongoose";
@@ -10,9 +13,10 @@ import faqRoutes from "./routes/faqRoutes.js";
 import appointmentRoutes from "./routes/appointmentRoutes.js";
 import opinionRoutes from "./routes/opinionRoutes.js";
 import authTestRoutes from "./routes/authTest.js";
-import paymentRoutes from "./routes/paymentRoutes.js";
+//import paymentRoutes from "./routes/paymentRoutes.js";
 import adminRoutes from "./routes/adminRoutes.js";
 import adminLawyerRoutes from "./routes/adminLawyerRoutes.js";
+import reviewRoutes from "./routes/reviewRoutes.js";
 dotenv.config();
 
 const app = express();
@@ -29,9 +33,10 @@ app.use("/api/faqs", faqRoutes);
 app.use("/api/appointments", appointmentRoutes);
 app.use("/api/opinions", opinionRoutes);
 app.use("/api", authTestRoutes);
-app.use("/api/payments", paymentRoutes);
+//app.use("/api/payments", paymentRoutes);
 app.use("/api/admin", adminRoutes);
 app.use("/api/admin/lawyers", adminLawyerRoutes);
+app.use("/api/reviews", reviewRoutes);
 
 
 // DB + Server

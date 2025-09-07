@@ -132,8 +132,7 @@ export const updatePaymentStatus = async (req, res) => {
   }
 };
 
-// Handles APPOINTMENT updates
-// Example: "pending" → "accepted"
+// Handles APPOINTMENT updates (e.g. "pending" -> "accepted")
 export const updateAppointmentStatus = async (req, res) => {
   try {
     const { id } = req.params;
@@ -143,19 +142,50 @@ export const updateAppointmentStatus = async (req, res) => {
       return res.status(400).json({ error: "Invalid status" });
     }
 
-    const updated = await Appointment.findByIdAndUpdate(
-      id,
-      { status, paymentStatus: status === "accepted" ? "paid" : undefined },  // <-- appointment status (different from paymentStatus)
-      { new: true }
-    );
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ error: "Invalid appointment id" });
+    }
 
-    if (!updated) return res.status(404).json({ error: "Appointment not found" });
+    // load current appointment to inspect previous status
+    const appointment = await Appointment.findById(id);
+    if (!appointment) {
+      return res.status(404).json({ error: "Appointment not found" });
+    }
+
+    const prevStatus = appointment.status;
+
+    // update the appointment status
+    appointment.status = status;
+    const updated = await appointment.save();
+
+    // ✅ update lawyer's clientsCount inside USERS collection
+    try {
+      const lawyerId = appointment.lawyer;
+      console.log("Updating clientsCount for lawyer:", lawyerId); // 👈 add here
+      if (lawyerId) {
+        if (prevStatus !== "accepted" && status === "accepted") {
+          await User.findByIdAndUpdate(lawyerId, { $inc: { clientsCount: 1 } });
+        } else if (prevStatus === "accepted" && status !== "accepted") {
+          await User.findByIdAndUpdate(lawyerId, { $inc: { clientsCount: -1 } });
+        }
+          // 👇 log after update
+        const updatedLawyer = await User.findById(lawyerId);
+        console.log("Lawyer clientsCount now:", updatedLawyer?.clientsCount);
+      }
+    } catch (err) {
+      console.error("Failed to update lawyer clientsCount:", err);
+      // don't fail the whole request if this side-update fails
+    }
 
     res.json({ message: "Appointment status updated successfully!", appointment: updated });
   } catch (err) {
+    console.error("updateAppointmentStatus error:", err);
     res.status(500).json({ error: err.message });
   }
 };
+
+
+
 export const getAppointmentById = async (req, res) => {
   try {
     const { id } = req.params;

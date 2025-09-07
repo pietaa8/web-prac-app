@@ -37,6 +37,8 @@ const LawyerDashboard = () => {
     const handleStatusChange = async (id, status) => {
     try {
       const token = localStorage.getItem("token");
+      
+    // Update appointment status (accepted/cancelled)
       await axios.put(
         `http://localhost:5000/api/appointments/${id}/status`,
         { status },
@@ -46,7 +48,7 @@ const LawyerDashboard = () => {
     if (status === "accepted") {
       await axios.put(
         `http://localhost:5000/api/appointments/${id}/payment`,
-        { status: "accepted" },
+        { status: "paid" },  // <-- must be one of ["pending","paid","cancelled"]
         { headers: { Authorization: `Bearer ${token}` } }
       );
     }
@@ -54,7 +56,11 @@ const LawyerDashboard = () => {
       // update UI immediately
       setAppointments((prev) =>
         prev.map((appt) =>
-          appt._id === id ? { ...appt, status } : appt
+          appt._id === id ? {
+              ...appt,
+              status,
+              paymentStatus: status === "accepted" ? "paid" : appt.paymentStatus,
+            } : appt
         )
       );
     } catch (err) {

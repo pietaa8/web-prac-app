@@ -19,7 +19,7 @@ const quickLinks01 = [
 
 const quickLinks02 = [
   { path: "/lawyers", display: "Find a Lawyer" },
-  { path: "/appointment", display: "Request an Appointment" },
+  { path: "/lawyers", display: "Request an Appointment" },
   { path: "/opinion", display: "Get a Opinion" },
 ];
 
@@ -103,12 +103,12 @@ const Footer = () => {
               {quickLinks02.map((item, index) => (
                 <li key={index} className="mb-4">
                   {item.display === "Request an Appointment" ? (
-                    <button
-                      onClick={handleAppointment}
-                      className="text-[16px] leading-7 font-[400] text-textColor hover:underline"
-                    >
-                      {item.display}
-                    </button>
+                    <Link
+            to="/lawyers"  // ✅ navigate to lawyers page
+            className="text-[16px] leading-7 font-[400] text-textColor hover:underline"
+          >
+            {item.display}
+          </Link> 
                   ) : item.display === "Get a Opinion" ? (
                     <button
                       onClick={handleOpinion}
