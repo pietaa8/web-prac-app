@@ -1,19 +1,17 @@
-import axios from "axios";
+ import axios from "axios";
+import BASE_URL from "@/config.js";   // adjust the path depending on your folder
 
-// ✅ Automatically choose correct backend URL
-const BASE_URL = "https://lawvault.onrender.com/api"; //http://localhost:5000/api
+axios.defaults.baseURL = BASE_URL;
 
-// Create axios instance
-const api = axios.create({
-  baseURL: BASE_URL,
-});cd 
+export default axios;
+
 
 // --------------------- User Auth ---------------------
 
 // Signup (Register new user)
 export const signupUser = async (formData) => {
   try {
-    const response = await axios.post(`${BASE_URL}/users/signup`, formData, {
+    const response = await axios.post(`/users/signup`, formData, {
       headers: { "Content-Type": "multipart/form-data" },
     });
     return response.data;
@@ -27,7 +25,7 @@ export const signupUser = async (formData) => {
 // Login (Authenticate user)
 export const loginUser = async (credentials) => {
   try {
-    const response = await axios.post(`${BASE_URL}/users/login`, credentials);
+    const response = await axios.post(`/users/login`, credentials);
     return response.data;
   } catch (error) {
     console.error("Error logging in:", error);
@@ -38,7 +36,7 @@ export const loginUser = async (credentials) => {
 // --------------------- Lawyers ---------------------
 export const getLawyers = async () => {
   try {
-    const response = await axios.get(`${BASE_URL}/lawyers`);
+    const response = await axios.get(`/lawyers`);
     return response.data; // array of lawyers
   } catch (error) {
     console.error("Error fetching lawyers:", error);
@@ -51,7 +49,7 @@ export const getLawyers = async () => {
 // --------------------- Testimonials ---------------------
 export const getTestimonials = async () => {
   try {
-    const response = await axios.get(`${BASE_URL}/testimonials`);
+    const response = await axios.get(`/testimonials`);
     return response.data; // array of testimonials
   } catch (error) {
     console.error("Error fetching testimonials:", error);
@@ -62,7 +60,7 @@ export const getTestimonials = async () => {
 // --------------------- FAQs ---------------------
 export const getFAQs = async () => {
   try {
-    const response = await axios.get(`${BASE_URL}/faqs`);
+    const response = await axios.get(`/faqs`);
     return response.data; // array of FAQs
   } catch (error) {
     console.error("Error fetching FAQs:", error);
@@ -74,7 +72,7 @@ export const getFAQs = async () => {
 export const requestAppointment = async (appointmentData) => {
   try {
     const token = localStorage.getItem("token"); // get saved JWT
-    const response = await axios.post(`${BASE_URL}/appointments`, appointmentData, {
+    const response = await axios.post(`/appointments`, appointmentData, {
       headers: {
         Authorization: `Bearer ${token}`, // send token
         "Content-Type": "application/json",
@@ -91,7 +89,7 @@ export const requestAppointment = async (appointmentData) => {
 // --------------------- Get Opinion ---------------------
 export const getOpinion = async (opinionData) => {
   try {
-    const response = await axios.post(`${BASE_URL}/opinions`, opinionData);
+    const response = await axios.post(`/opinions`, opinionData);
     return response.data; // opinion result or confirmation
   } catch (error) {
     console.error("Error getting opinion:", error);

@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import BASE_URL from "@/config.js";  // adjust the path
+
 
 const LawyerCard = ({ lawyer }) => {
   return (
@@ -6,7 +8,7 @@ const LawyerCard = ({ lawyer }) => {
       <img
         src={
           lawyer.photo
-            ? (lawyer.photo.startsWith("http") ? lawyer.photo : `http://localhost:5000/${lawyer.photo.replace(/\\/g, "/")}`)
+            ? (lawyer.photo.startsWith("http") ? lawyer.photo : `${BASE_URL}/${lawyer.photo.replace(/\\/g, "/")}`)
             : "/default-lawyer.png"
         }
         alt={lawyer.name}

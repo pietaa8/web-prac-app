@@ -1,6 +1,6 @@
 import { useState, useContext } from "react"; 
 import { Link, useNavigate } from "react-router-dom"; 
-import axios from "axios"; 
+import axios from "@/api/api.js"; 
 import { UserContext } from "../context/UserContext.jsx"; 
 // ✅ Import context 
 const Login = () => { 
@@ -13,7 +13,7 @@ const Login = () => {
   }; 
   const submitHandler = async (event) => { event.preventDefault(); 
     try { const res = await axios.post( 
-      "http://localhost:5000/api/users/login", // Backend login endpoint 
+      "/users/login", // Backend login endpoint 
         formData, 
         { 
           headers: { "Content-Type": "application/json" }, 
@@ -103,5 +103,5 @@ const Login = () => {
                                   </section> 
                                   ); 
                                 }; 
-                                export default Login;
+export default Login;
 

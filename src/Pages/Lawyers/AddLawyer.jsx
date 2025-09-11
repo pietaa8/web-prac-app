@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import BASE_URL from "@/config.js";  // adjust path if needed
+
 
 const AddLawyer = () => {
   const navigate = useNavigate();
@@ -31,10 +33,10 @@ const AddLawyer = () => {
     }
 
     try {
-      const res = await fetch("http://localhost:5000/api/lawyers/add", {
-        method: "POST",
-        body: data,
-      });
+      const res = await fetch(`${BASE_URL}/lawyers/add`, {
+  method: "POST",
+  body: data,
+});
 
       if (!res.ok) throw new Error("Failed to add lawyer");
       await res.json();

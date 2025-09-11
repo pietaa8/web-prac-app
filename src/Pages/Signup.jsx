@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import axios from "@/api/api.js";
 import { UserContext } from "../context/UserContext.jsx";
 
 const Signup = () => {
@@ -36,7 +36,7 @@ const Signup = () => {
       if (formData.photo) data.append("photo", formData.photo);
 
       const res = await axios.post(
-        "http://localhost:5000/api/users/signup",
+        "/users/signup",
         data,
         { headers: { "Content-Type": "multipart/form-data" } }
       );

@@ -1,7 +1,7 @@
 // src/Admin/AdminEditLawyer.jsx
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import axios from "axios";
+import axios from "@/api/api.js"; 
 
 const AdminEditLawyer = () => {
   const { id } = useParams(); // get lawyer ID from URL
@@ -19,7 +19,7 @@ const AdminEditLawyer = () => {
   useEffect(() => {
     const fetchLawyer = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/lawyers/${id}`, {
+        const res = await axios.get(`/lawyers/${id}`, {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         });
         setFormData(res.data);
@@ -39,7 +39,7 @@ const AdminEditLawyer = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:5000/api/lawyers/${id}`, formData, {
+      await axios.put(`/lawyers/${id}`, formData, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       alert("✅ Lawyer updated successfully!");

@@ -1,7 +1,7 @@
 // src/Admin/AdminDashboard.jsx
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
+import axios from "@/api/api.js"; 
 
 const AdminDashboard = () => {
   const [lawyers, setLawyers] = useState([]);
@@ -11,7 +11,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/lawyers", {
+        const res = await axios.get("/lawyers", {
           headers: { Authorization: `Bearer ${token}` },
         });
         setLawyers(res.data);
@@ -26,7 +26,7 @@ const AdminDashboard = () => {
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure to delete this lawyer?")) return;
     try {
-      await axios.delete(`http://localhost:5000/api/lawyers/${id}`, {
+      await axios.delete(`/lawyers/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setLawyers(lawyers.filter((l) => l._id !== id));

@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import axios from "axios";
+import axios from "@/api/api";
 
 const AppointmentDetails = () => {
   const location = useLocation();
@@ -15,7 +15,7 @@ useEffect(() => {
     }
      const fetchAppointment = async () => {
       try {
-        const { data } = await axios.get(`http://localhost:5000/api/appointments/${initialAppointment._id}`, {
+        const { data } = await axios.get(`/appointments/${initialAppointment._id}`, {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         });
         setAppointment(data);

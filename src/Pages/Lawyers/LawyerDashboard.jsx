@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios from "@/api/api.js";
 
 const LawyerDashboard = () => {
   const [appointments, setAppointments] = useState([]);
@@ -15,7 +15,7 @@ const LawyerDashboard = () => {
         }
 
         const res = await axios.get(
-          "http://localhost:5000/api/appointments/lawyer/appointments",
+          "/appointments/lawyer/appointments",
           { headers: { Authorization: `Bearer ${token}` } }
         );
 
@@ -40,14 +40,14 @@ const LawyerDashboard = () => {
       
     // Update appointment status (accepted/cancelled)
       await axios.put(
-        `http://localhost:5000/api/appointments/${id}/status`,
+        `/appointments/${id}/status`,
         { status },
         { headers: { Authorization: `Bearer ${token}` } }
       );
        // If accepted, also update payment status to 'accepted'
     if (status === "accepted") {
       await axios.put(
-        `http://localhost:5000/api/appointments/${id}/payment`,
+        `/appointments/${id}/payment`,
         { status: "paid" },  // <-- must be one of ["pending","paid","cancelled"]
         { headers: { Authorization: `Bearer ${token}` } }
       );

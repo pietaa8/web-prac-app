@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import SidePanel from "./SidePanel.jsx";
 import Reviews from "./Reviews.jsx"; // import your Reviews component
 import { UserContext } from "../../context/UserContext";
-import axios from "axios";
+import axios from "@/api/api.js";
 import starIcon from "../../assets/images/Star.png";
 
 const LawyerProfile = () => {
@@ -23,7 +23,7 @@ const LawyerProfile = () => {
    // Function to fetch reviews and update lawyer ratings
   const updateReviews = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/reviews/${lawyer._id}`);
+      const res = await axios.get(`/reviews/${lawyer._id}`);
       setReviews(res.data);
 
       // Update lawyer's totalRating and averageRating
@@ -47,7 +47,7 @@ const LawyerProfile = () => {
   useEffect(() => {
     const fetchLawyer = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/lawyers/${id}`);
+        const res = await axios.get(`/lawyers/${id}`);
         setLawyer(res.data);
       } catch (err) {
         console.error(err);
@@ -61,7 +61,7 @@ const LawyerProfile = () => {
   useEffect(() => {
   const fetchReviews = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/reviews/${id}`);
+      const res = await axios.get(`/reviews/${id}`);
       setReviews(res.data);
     } catch (err) {
       console.error(err);
@@ -91,14 +91,14 @@ const submitReview = async () => {
   try {
     // POST review with Authorization header
     await axios.post(
-      `http://localhost:5000/api/reviews/${lawyer._id}`,
+      `/reviews/${lawyer._id}`,
       { rating, review: reviewText },
       { headers: { Authorization: `Bearer ${token}` } }
     );
       // ✅ Update reviews and lawyer ratings after submission
       await updateReviews();
     // Fetch updated reviews
-    const res = await axios.get(`http://localhost:5000/api/reviews/${lawyer._id}`);
+    const res = await axios.get(`/reviews/${lawyer._id}`);
     setReviews(res.data);
 
     // Reset form

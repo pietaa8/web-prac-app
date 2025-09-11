@@ -1,14 +1,14 @@
 // src/Admin/AdminLawyers.jsx
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import axios from "@/api/api.js"; 
 
 const AdminLawyers = () => {
   const [lawyers, setLawyers] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get("http://localhost:5000/api/lawyers")
+    axios.get("/lawyers")
       .then((res) => setLawyers(res.data))
       .catch((err) => console.error(err));
   }, []);
@@ -20,7 +20,7 @@ const AdminLawyers = () => {
   const handleDelete = async (id) => {
     if (!window.confirm("Are you sure you want to delete this lawyer?")) return;
     try {
-      await axios.delete(`http://localhost:5000/api/lawyers/${id}`, {
+      await axios.delete(`/lawyers/${id}`, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       setLawyers(lawyers.filter((lawyer) => lawyer._id !== id));

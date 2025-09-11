@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import LawyerCard from "./LawyerCard";
+import BASE_URL from "@/config.js";
 
 const LawyersList = () => {
   const [lawyers, setLawyers] = useState([]);
@@ -8,7 +9,8 @@ const LawyersList = () => {
   useEffect(() => {
     const fetchLawyers = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/lawyers");
+        const res = await fetch(`${BASE_URL}/lawyers`);
+
         if (!res.ok) throw new Error("Failed to fetch lawyers");
         const data = await res.json();
         setLawyers(data);
