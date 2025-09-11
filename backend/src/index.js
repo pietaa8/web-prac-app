@@ -26,6 +26,7 @@ app.use(express.json());
 app.use("/uploads", express.static(path.join(process.cwd(), "uploads"))); // ✅ Serve uploaded photos
 
 // Routes
+app.get("/", (req, res) => res.send("Backend is live!"));
 app.use("/api/users", userRoutes);
 app.use("/api/lawyers", lawyerRoutes);
 app.use("/api/faqs", faqRoutes);

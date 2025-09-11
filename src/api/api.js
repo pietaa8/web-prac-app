@@ -1,7 +1,12 @@
 import axios from "axios";
 
-// Base URL of your backend
-const BASE_URL = "http://localhost:5000/api"; // change 5000 if your backend port is different
+// ✅ Automatically choose correct backend URL
+const BASE_URL = "https://lawvault.onrender.com/api"; //http://localhost:5000/api
+
+// Create axios instance
+const api = axios.create({
+  baseURL: BASE_URL,
+});cd 
 
 // --------------------- User Auth ---------------------
 
