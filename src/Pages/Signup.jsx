@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "@/api/api.js";
 import { UserContext } from "../context/UserContext.jsx";
 
+
 const Signup = () => {
   const navigate = useNavigate();
   const { setUser } = useContext(UserContext);

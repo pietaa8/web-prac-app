@@ -12,6 +12,7 @@ const AdminEditLawyer = () => {
     specialization: "",
     experience: "",
     phone: "",
+    photo: null, // ✅ add photo
   });
   const [loading, setLoading] = useState(true);
 
@@ -39,8 +40,17 @@ const AdminEditLawyer = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      const data = new FormData();
+    Object.keys(formData).forEach((key) => {
+      if (formData[key] !== null) {
+        data.append(key, formData[key]);
+      }
+    });
+
       await axios.put(`/lawyers/${id}`, formData, {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "multipart/form-data",
+        },
       });
       alert("✅ Lawyer updated successfully!");
       navigate("/admin/lawyers");
@@ -118,6 +128,17 @@ const AdminEditLawyer = () => {
             className="w-full border px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-primaryColor"
           />
         </div>
+        {/* Photo */}
+<div>
+  <label className="block font-semibold mb-1">Profile Photo</label>
+  <input
+    type="file"
+    name="photo"
+    accept="image/*"
+    onChange={(e) => setFormData({ ...formData, photo: e.target.files[0] })}
+    className="w-full"
+  />
+</div>
 
         {/* Buttons */}
         <div className="flex gap-4 mt-6">

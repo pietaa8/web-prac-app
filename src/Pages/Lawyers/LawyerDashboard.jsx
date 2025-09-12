@@ -6,14 +6,12 @@ const LawyerDashboard = () => {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    const fetchAppointments = async () => {
-      try {
-        const token = localStorage.getItem("token");
-        if (!token) {
-          setError("You are not logged in.");
-          return;
-        }
+  const token = localStorage.getItem("token");
+  if (!token) return; // wait until token exists
 
+  const fetchAppointments = async () => {
+      try {
+      
         const res = await axios.get(
           "/appointments/lawyer/appointments",
           { headers: { Authorization: `Bearer ${token}` } }

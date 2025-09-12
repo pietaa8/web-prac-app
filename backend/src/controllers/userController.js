@@ -17,10 +17,8 @@ export const registerUser = async (req, res) => {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    const backendUrl = process.env.BACKEND_URL || "http://localhost:5000";
-const photo = req.file
-  ? `${backendUrl}/${req.file.path.replace(/\\/g, "/")}`
-  : null;
+     // ✅ Save Cloudinary URL if file uploaded
+    const photo = req.file ? req.file.path : null;
 
     const newUser = await User.create({
       name,

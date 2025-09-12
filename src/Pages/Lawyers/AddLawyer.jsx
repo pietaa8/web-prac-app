@@ -1,14 +1,13 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import BASE_URL from "@/config.js";  // adjust path if needed
-
+import axios from "@/api/api.js"; // make sure baseURL is set
 
 const AddLawyer = () => {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-     password: "",
+    password: "",
     specialization: "",
     experience: "",
     bio: "",
@@ -17,8 +16,8 @@ const AddLawyer = () => {
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
-     if (files) {
-    setFormData((prev) => ({ ...prev, [name]: files[0] }));  // ✅ preview
+    if (files) {
+      setFormData((prev) => ({ ...prev, [name]: files[0] }));
     } else {
       setFormData((prev) => ({ ...prev, [name]: value }));
     }
@@ -26,130 +25,135 @@ const AddLawyer = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const data = new FormData();
-    for (let key in formData) {
-      data.append(key, formData[key]);
-    }
-
     try {
-      const res = await fetch(`${BASE_URL}/lawyers/add`, {
-  method: "POST",
-  body: data,
-});
+      const data = new FormData();
+      Object.keys(formData).forEach((key) => {
+        if (formData[key] !== null) data.append(key, formData[key]);
+      });
 
-      if (!res.ok) throw new Error("Failed to add lawyer");
-      await res.json();
+      const token = localStorage.getItem("token"); // admin token
+
+      await axios.post("/lawyers/add", data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
+        },
+      });
 
       alert("✅ Lawyer added successfully!");
-      navigate("/lawyers");
-    } catch (error) {
-      console.error("❌ Error:", error);
-      alert("Error adding lawyer. Please try again.");
+      navigate("/admin/lawyers");
+    } catch (err) {
+      console.error("❌ Error adding lawyer:", err.response?.data || err.message);
+      alert("Error adding lawyer. Check console for details.");
     }
   };
 
   return (
-    <section className="pt-[60px] pb-[80px]">
-      <div className="container max-w-2xl mx-auto bg-white shadow-lg rounded-2xl p-8">
-        <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
-          Add New Lawyer
-        </h2>
+    <div className="max-w-2xl mx-auto mt-10 p-8 bg-white shadow-lg rounded-xl">
+      <h2 className="text-2xl font-bold text-center mb-6">Add New Lawyer</h2>
 
-        <form onSubmit={handleSubmit} className="space-y-5">
-          <div>
-            <label className="block mb-2 font-medium text-gray-700">Full Name</label>
-            <input
-              type="text"
-              name="name"
-              placeholder="Enter full name"
-              value={formData.name}
-              onChange={handleChange}
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              required
-            />
-          </div>
+      <form onSubmit={handleSubmit} className="space-y-5">
+        {/* Name */}
+        <div>
+          <label className="block mb-1 font-semibold">Full Name</label>
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            placeholder="Enter full name"
+            className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            required
+          />
+        </div>
 
-          <div>
-            <label className="block mb-2 font-medium text-gray-700">Email</label>
-            <input
-              type="email"
-              name="email"
-              placeholder="Enter email"
-              value={formData.email}
-              onChange={handleChange}
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              required
-            />
-          </div>
-          <div>
-            <label className="block mb-2 font-medium text-gray-700">Password</label>
-            <input
+        {/* Email */}
+        <div>
+          <label className="block mb-1 font-semibold">Email</label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="Enter email"
+            className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            required
+          />
+        </div>
+
+        {/* Password */}
+        <div>
+          <label className="block mb-1 font-semibold">Password</label>
+          <input
             type="password"
             name="password"
-            placeholder="Enter password for lawyer"
-            value={formData.password || ""}
+            value={formData.password}
             onChange={handleChange}
-            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+            placeholder="Enter password"
+            className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             required
-           />
-          </div>
+          />
+        </div>
 
-          <div>
-            <label className="block mb-2 font-medium text-gray-700">Specialization</label>
-            <input
-              type="text"
-              name="specialization"
-              placeholder="e.g., Family Law, Corporate Law"
-              value={formData.specialization}
-              onChange={handleChange}
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
-            />
-          </div>
+        {/* Specialization */}
+        <div>
+          <label className="block mb-1 font-semibold">Specialization</label>
+          <input
+            type="text"
+            name="specialization"
+            value={formData.specialization}
+            onChange={handleChange}
+            placeholder="e.g., Family Law, Corporate Law"
+            className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
 
-          <div>
-            <label className="block mb-2 font-medium text-gray-700">Experience (Years)</label>
-            <input
-              type="number"
-              name="experience"
-              placeholder="Years of experience"
-              value={formData.experience}
-              onChange={handleChange}
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
-            />
-          </div>
+        {/* Experience */}
+        <div>
+          <label className="block mb-1 font-semibold">Experience (Years)</label>
+          <input
+            type="number"
+            name="experience"
+            value={formData.experience}
+            onChange={handleChange}
+            placeholder="Years of experience"
+            className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+        </div>
 
-          <div>
-            <label className="block mb-2 font-medium text-gray-700">Short Bio</label>
-            <textarea
-              name="bio"
-              placeholder="Write a short bio..."
-              value={formData.bio}
-              onChange={handleChange}
-              className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none min-h-[100px]"
-            />
-          </div>
+        {/* Bio */}
+        <div>
+          <label className="block mb-1 font-semibold">Short Bio</label>
+          <textarea
+            name="bio"
+            value={formData.bio}
+            onChange={handleChange}
+            placeholder="Write a short bio about the lawyer"
+            className="w-full p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 min-h-[100px]"
+          />
+        </div>
 
-          <div>
-            <label className="block mb-2 font-medium text-gray-700">Profile Photo</label>
-            <input
-              type="file"
-              name="photo"
-              accept="image/*"
-              onChange={handleChange}
-              className="w-full text-gray-600 file:mr-3 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
-            />
-          </div>
+        {/* Photo */}
+        <div>
+          <label className="block mb-1 font-semibold">Profile Photo</label>
+          <input
+            type="file"
+            name="photo"
+            accept="image/*"
+            onChange={handleChange}
+            className="w-full text-gray-600 file:mr-3 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-medium file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100"
+          />
+        </div>
 
-          <button
-            type="submit"
-            className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition-all duration-200"
-          >
-            ➕ Add Lawyer
-          </button>
-        </form>
-      </div>
-    </section>
+        {/* Submit */}
+        <button
+          type="submit"
+          className="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition"
+        >
+          ➕ Add Lawyer
+        </button>
+      </form>
+    </div>
   );
 };
 

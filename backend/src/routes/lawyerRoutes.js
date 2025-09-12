@@ -1,16 +1,19 @@
 import express from "express";
 import bcrypt from "bcryptjs";
 import multer from "multer";
-import path from "path";
+import { CloudinaryStorage } from "multer-storage-cloudinary";
+import cloudinary from "../utils/cloudinary.js";  // ✅ your cloudinary config
 import User from "../models/User.js"; // lawyers stored in User model
 
 const router = express.Router();
 
-// Multer setup
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, "uploads/"),
-  filename: (req, file, cb) =>
-    cb(null, Date.now() + path.extname(file.originalname)),
+// ✅ Cloudinary Multer storage
+const storage = new CloudinaryStorage({
+  cloudinary,
+  params: {
+    folder: "lawvault", // folder name in Cloudinary
+    allowed_formats: ["jpg", "png", "jpeg"],
+  },
 });
 const upload = multer({ storage });
 
@@ -30,8 +33,8 @@ router.post("/add", upload.single("photo"), async (req, res) => {
       specialization,
       experience,
       bio,
-      // ✅ Only save filename, not full path
-     photo: req.file ? `${backendUrl}/uploads/${req.file.filename}` : null,
+     // ✅ Cloudinary gives URL directly
+      photo: req.file ? req.file.path : null,
 
     });
 
