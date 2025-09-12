@@ -17,9 +17,10 @@ export const registerUser = async (req, res) => {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    const photo = req.file
-      ? `http://localhost:5000/${req.file.path.replace(/\\/g, "/")}`
-      : null;
+    const backendUrl = process.env.BACKEND_URL || "http://localhost:5000";
+const photo = req.file
+  ? `${backendUrl}/${req.file.path.replace(/\\/g, "/")}`
+  : null;
 
     const newUser = await User.create({
       name,
@@ -32,6 +33,7 @@ export const registerUser = async (req, res) => {
 
     res.status(201).json({ message: "User registered successfully.", user: newUser });
   } catch (err) {
+    console.error("Signup Error:", err);
     res.status(500).json({ message: err.message });
   }
 };

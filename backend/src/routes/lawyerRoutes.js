@@ -21,7 +21,7 @@ router.post("/add", upload.single("photo"), async (req, res) => {
 
     // hash password before saving
     const hashedPassword = await bcrypt.hash(password, 10);
-
+    const backendUrl = process.env.BACKEND_URL || "http://localhost:5000";
     const lawyer = new User({
       name,
       email,
@@ -31,7 +31,7 @@ router.post("/add", upload.single("photo"), async (req, res) => {
       experience,
       bio,
       // ✅ Only save filename, not full path
-     photo: req.file ? `http://localhost:5000/uploads/${req.file.filename}` : null,
+     photo: req.file ? `${backendUrl}/uploads/${req.file.filename}` : null,
 
     });
 
