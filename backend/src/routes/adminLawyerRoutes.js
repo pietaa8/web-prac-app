@@ -3,6 +3,7 @@ import express from "express";
 import multer from "multer";  
 import { CloudinaryStorage } from "multer-storage-cloudinary";
 import cloudinary from "../utils/cloudinary.js";  // ✅ your cloudinary config
+import bcrypt from "bcrypt"; 
 import User from "../models/User.js"; // lawyers stored in User model
 import { authMiddleware, adminMiddleware } from "../middleware/auth.js";
 

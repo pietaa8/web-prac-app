@@ -1,19 +1,14 @@
 import { Link } from "react-router-dom";
-import BASE_URL from "@/config.js";  // adjust the path
 
 
 const LawyerCard = ({ lawyer }) => {
   return (
     <div className="p-3 lg:p-5 rounded-lg shadow-md hover:shadow-xl transition-shadow">
       <img
-        src={
-          lawyer.photo
-            ? (lawyer.photo.startsWith("http") ? lawyer.photo : `${BASE_URL}/${lawyer.photo.replace(/\\/g, "/")}`)
-            : "/default-lawyer.png"
-        }
-        alt={lawyer.name}
-        className="w-full h-48 object-cover rounded-lg mb-3"
-      />
+  src={lawyer.photo || "/default-lawyer.png"}
+  alt={lawyer.name}
+  className="w-full h-48 object-cover rounded-lg mb-3"
+/>
 
       <h3 className="text-lg font-semibold">{lawyer.name}</h3>
       <p className="text-sm text-gray-600 capitalize">

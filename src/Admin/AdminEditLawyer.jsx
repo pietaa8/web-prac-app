@@ -47,7 +47,7 @@ const AdminEditLawyer = () => {
       }
     });
 
-      await axios.put(`/lawyers/${id}`, formData, {
+      await axios.put(`/admin/lawyers/${id}`, data, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}`,
         "Content-Type": "multipart/form-data",
         },

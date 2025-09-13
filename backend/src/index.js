@@ -1,8 +1,9 @@
+import 'dotenv/config'; // ✅ MUST be first before anything else
 import express from "express";
 import path from "path";
 import mongoose from "mongoose";
 import cors from "cors";
-import dotenv from "dotenv";
+
 
 import userRoutes from "./routes/userRoutes.js";
 import lawyerRoutes from "./routes/lawyerRoutes.js";
@@ -14,7 +15,7 @@ import authTestRoutes from "./routes/authTest.js";
 import adminRoutes from "./routes/adminRoutes.js";
 import adminLawyerRoutes from "./routes/adminLawyerRoutes.js";
 import reviewRoutes from "./routes/reviewRoutes.js";
-dotenv.config();
+
 
 const app = express();
 
