@@ -23,7 +23,7 @@ This project is a web based platform designed to streamline the appointment and 
 git clone https://github.com/pietaa8/web-prac-app.git
 cd web-prac-app
 
-Backend Setup (lawvault-backend) :
+Backend Setup (backend) :
 
 cd lawvault-backend
 # Install dependencies
